@@ -37,7 +37,7 @@
 					<li class="nav-item {{ request()->is('/') ? 'active' : '' }}"><a href="/" class="nav-link">Home</a></li>
 					<li class="nav-item {{ request()->is('about') ? 'active' : '' }}"><a href="{{ route('about') }}" class="nav-link">About</a></li>
 					<li class="nav-item {{ request()->is('destination') ? 'active' : '' }}"><a href="{{ route('destination') }}" class="nav-link">Packages</a></li>
-                    <li class="nav-item {{ request()->is('tours') ? 'active' : '' }}"><a href="{{ route('tours') }}" class="nav-link">Tours</a></li>
+                    <li class="nav-item {{ request()->is('tours') ? 'active' : '' }}"><a href="{{ route('tours.index') }}" class="nav-link">Tours</a></li>
 					<li class="nav-item {{ request()->is('contact') ? 'active' : '' }}"><a href="{{ route('contact') }}" class="nav-link">Contact</a></li>
                     <li class="nav-item {{ request()->is('gallery') ? 'active' : '' }}"><a href="{{ route('gallery') }}" class="nav-link">Gallery</a></li>
 
@@ -194,4 +194,3 @@
 
 		</body>
 		</html>
-

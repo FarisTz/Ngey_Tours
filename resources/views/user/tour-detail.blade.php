@@ -29,7 +29,7 @@
                         <li><i class="fa fa-check"></i> {{ $highlight }}</li>
                     @endforeach
                 </ul>
-                <a href="{{ route('tours') }}" class="btn btn-back mt-3">
+                <a href="{{ route('tours.index') }}" class="btn btn-back mt-3">
                     <i class="fa fa-arrow-left mr-2"></i>Back to Tours
                 </a>
             </div>
