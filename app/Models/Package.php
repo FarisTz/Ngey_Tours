@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tour extends Model
+class Package extends Model
 {
     protected $fillable = [
         'slug',

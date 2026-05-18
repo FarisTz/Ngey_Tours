@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Tour;
+use App\Models\Package;
 
 class UserController extends Controller
 {
@@ -22,7 +24,9 @@ class UserController extends Controller
     }
     public function destination()
     {
-        return view('user.destination');}
+            $packages = Package::orderBy('created_at', 'desc')->get();
+            return view('user.destination', compact('packages'));
+        }
 
 
     public function contact()
@@ -33,9 +37,16 @@ class UserController extends Controller
     {
         return view('user.blog');
     }
-    public function testimonials()
+    public function tours()
     {
-        return view('user.testimonial');
+        $tours = Tour::orderBy('created_at', 'desc')->get();
+        return view('user.tours', compact('tours'));
+    }
+
+    public function showTour($slug)
+    {
+        $tour = Tour::where('slug', $slug)->firstOrFail();
+        return view('user.tour-detail', compact('tour'));
     }
     public function gallery()
     {

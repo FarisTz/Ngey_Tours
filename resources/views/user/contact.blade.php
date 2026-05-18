@@ -2,12 +2,13 @@
 @section('title','Contact US')
 @section('content')
 
- <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('images/bg_1.jpg');">
+ <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('images/spice-prison-1.webp');">
   <div class="overlay"></div>
   <div class="container">
     <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
       <div class="col-md-9 ftco-animate pb-5 text-center">
        <p class="breadcrumbs"><span class="mr-2"><a href="/">Home <i class="fa fa-chevron-right"></i></a></span> <span>Contact us <i class="fa fa-chevron-right"></i></span></p>
+       <marquee behavior="scroll" direction="left"> <h2 class="mb-3 bread" style="color: white">Enjoy the Ngey Tour & Safari</h2></marquee>
        <h1 class="mb-0 bread">Contact us</h1>
      </div>
    </div>
@@ -23,7 +24,7 @@
          <span class="fa fa-map-marker"></span>
        </div>
        <h3 class="mb-2">Address</h3>
-       <p>198 West 21th Street, Suite 721 New York NY 10016</p>
+       <p>Mazizini Zanziabr</p>
      </div>
    </div>
    <div class="col-md-3 d-flex">
@@ -32,7 +33,7 @@
        <span class="fa fa-phone"></span>
      </div>
      <h3 class="mb-2">Contact Number</h3>
-     <p><a href="tel://1234567920">+ 1235 2355 98</a></p>
+     <p><a href="tel://1234567920">+255355098</a></p>
    </div>
  </div>
  <div class="col-md-3 d-flex">
@@ -41,7 +42,7 @@
      <span class="fa fa-paper-plane"></span>
    </div>
    <h3 class="mb-2">Email Address</h3>
-   <p><a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+   <p><a href="mailto:info@yoursite.com">info@ngeytours.com</a></p>
  </div>
 </div>
 <div class="col-md-3 d-flex">
@@ -50,7 +51,7 @@
    <span class="fa fa-globe"></span>
  </div>
  <h3 class="mb-2">Website</h3>
- <p><a href="#">yoursite.com</a></p>
+ <p><a href="#">ngeytours.com</a></p>
 </div>
 </div>
 </div>
