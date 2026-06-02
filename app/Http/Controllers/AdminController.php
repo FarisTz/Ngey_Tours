@@ -7,6 +7,7 @@ use App\Models\Package;
 use App\Models\Booking;
 use App\Models\Notification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class AdminController extends Controller
 {
@@ -41,13 +42,23 @@ class AdminController extends Controller
             'slug' => 'required|string|unique:tours,slug',
             'title' => 'required|string|max:255',
             'short' => 'nullable|string',
-            'image' => 'nullable|string|max:255',
+            'image' => 'nullable|file|max:2048',
             'description' => 'required|string',
             'highlights' => 'nullable|string',
             'price' => 'required|numeric|min:0',
             'duration' => 'nullable|string|max:255',
             'location' => 'nullable|string|max:255',
         ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . preg_replace('/[^A-Za-z0-9_\-\.]/', '_', $image->getClientOriginalName());
+            if (!File::exists(public_path('images/tours'))) {
+                File::makeDirectory(public_path('images/tours'), 0755, true);
+            }
+            $image->move(public_path('images/tours'), $imageName);
+            $data['image'] = 'images/tours/' . $imageName;
+        }
 
         $data['highlights'] = $data['highlights'] ? array_filter(array_map('trim', explode('\n', $data['highlights']))) : [];
 
@@ -73,13 +84,23 @@ class AdminController extends Controller
             'slug' => 'required|string|unique:packages,slug',
             'title' => 'required|string|max:255',
             'short' => 'nullable|string',
-            'image' => 'nullable|string|max:255',
+            'image' => 'nullable|file|max:2048',
             'description' => 'required|string',
             'highlights' => 'nullable|string',
             'price' => 'required|numeric|min:0',
             'duration' => 'nullable|string|max:255',
             'location' => 'nullable|string|max:255',
         ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . preg_replace('/[^A-Za-z0-9_\-\.]/', '_', $image->getClientOriginalName());
+            if (!File::exists(public_path('images/packages'))) {
+                File::makeDirectory(public_path('images/packages'), 0755, true);
+            }
+            $image->move(public_path('images/packages'), $imageName);
+            $data['image'] = 'images/packages/' . $imageName;
+        }
 
         $data['highlights'] = $data['highlights'] ? array_filter(array_map('trim', explode('\n', $data['highlights']))) : [];
 

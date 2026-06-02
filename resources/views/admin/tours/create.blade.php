@@ -19,7 +19,7 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.tours.store') }}" method="POST" class="space-y-6 bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+    <form action="{{ route('admin.tours.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6 bg-white p-6 rounded-lg shadow-sm border border-gray-200">
         @csrf
         <div>
             <label class="block text-sm font-medium text-gray-700">Title</label>
@@ -34,8 +34,9 @@
             <input name="short" value="{{ old('short') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
         </div>
         <div>
-            <label class="block text-sm font-medium text-gray-700">Image path</label>
-            <input name="image" value="{{ old('image') }}" placeholder="images/tours/example.jpg" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
+            <label class="block text-sm font-medium text-gray-700">Image</label>
+            <input type="file" name="image" accept="image/*" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
+            <p class="mt-1 text-sm text-gray-500">Upload an image for the tour.</p>
         </div>
         <div>
             <label class="block text-sm font-medium text-gray-700">Price</label>

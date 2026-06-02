@@ -24,7 +24,7 @@
          <span class="fa fa-map-marker"></span>
        </div>
        <h3 class="mb-2">Address</h3>
-       <p>Mazizini Zanziabr</p>
+       <p>Mbweni Zanzibar</p>
      </div>
    </div>
    <div class="col-md-3 d-flex">
@@ -33,7 +33,7 @@
        <span class="fa fa-phone"></span>
      </div>
      <h3 class="mb-2">Contact Number</h3>
-     <p><a href="tel://1234567920">+255355098</a></p>
+     <p><a href="tel://+255 718 940 807">+255 718 940 807</a></p>
    </div>
  </div>
  <div class="col-md-3 d-flex">
@@ -42,7 +42,7 @@
      <span class="fa fa-paper-plane"></span>
    </div>
    <h3 class="mb-2">Email Address</h3>
-   <p><a href="mailto:info@yoursite.com">info@ngeytours.com</a></p>
+   <p><a href="mailto:ngeytour@gmail.com">ngeytour@gmail.com</a></p>
  </div>
 </div>
 <div class="col-md-3 d-flex">
@@ -62,7 +62,8 @@
   <div class="container">
     <div class="row block-9">
       <div class="col-md-6 order-md-last d-flex">
-        <form action="#" class="bg-light p-5 contact-form">
+        <form action="{{ route('contact.store') }}" method="POST" class="bg-light p-5 contact-form">
+          @csrf
           <div class="form-group">
             <input type="text" class="form-control" placeholder="Your Name">
           </div>
@@ -82,12 +83,62 @@
 
       </div>
 
-      <div class="col-md-6 d-flex">
-       <div id="map" class="bg-white"></div>
-     </div>
+        <div class="col-md-6 d-flex">
+         <!-- Map container -->
+         <div id="map" class="bg-white" style="width:100%; height:420px; border-radius:8px;"></div>
+       </div>
    </div>
  </div>
 </section>
+
+    @section('scripts')
+      <!-- Leaflet CSS & JS (OpenStreetMap) - reliable CDN links -->
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+      <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          // Mbweni Zanzibar coordinates (lat, lon)
+          const lat = -6.2124521331104035;
+          const lon = 39.20905320828166;
+
+          try {
+            const map = L.map('map', { scrollWheelZoom: false }).setView([lat, lon], 17);
+
+            // Base layers: Streets and Satellite (Esri World Imagery)
+            const streets = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+              maxZoom: 19,
+              attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+            });
+
+            const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+              maxZoom: 19,
+              attribution: 'Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community'
+            });
+
+            // Add default layer
+            streets.addTo(map);
+
+            // Marker and popup
+            const marker = L.marker([lat, lon]).addTo(map);
+            marker.bindPopup('<strong>Ngey Tour & Safari</strong><br>Office: Mbweni, Zanzibar');
+
+            // Layer control to toggle between base maps
+            const baseMaps = {
+              'Streets': streets,
+              'Satellite': satellite,
+            };
+            L.control.layers(baseMaps, null, { position: 'topright' }).addTo(map);
+
+            // Ensure map renders correctly if container was hidden or resized
+            setTimeout(() => { map.invalidateSize(); marker.openPopup(); }, 200);
+
+          } catch (err) {
+            console.error('Leaflet initialization error:', err);
+          }
+        });
+      </script>
+    @endsection
 
 
 @endsection

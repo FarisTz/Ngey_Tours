@@ -22,7 +22,7 @@
 					<a href="{{ route('admin.tours') }}" class="rounded-xl px-4 py-3 font-medium transition hover:bg-slate-800 {{ request()->routeIs('admin.tours*') ? 'bg-slate-800 text-white' : 'text-slate-300' }}">Tours</a>
 					<a href="{{ route('admin.packages') }}" class="rounded-xl px-4 py-3 font-medium transition hover:bg-slate-800 {{ request()->routeIs('admin.packages*') ? 'bg-slate-800 text-white' : 'text-slate-300' }}">Packages</a>
 					<a href="#" class="rounded-xl px-4 py-3 font-medium text-slate-300 transition hover:bg-slate-800">Messages</a>
-					<a href="#" class="rounded-xl px-4 py-3 font-medium text-slate-300 transition hover:bg-slate-800">Contacts</a>
+					<a href="{{ route('admin.contacts') }}" class="rounded-xl px-4 py-3 font-medium text-slate-300 transition hover:bg-slate-800">Contacts</a>
 					<a href="#" class="rounded-xl px-4 py-3 font-medium text-slate-300 transition hover:bg-slate-800">Notifications</a>
 
 					<div class="mt-auto">
@@ -35,7 +35,7 @@
 					</div>
 				</nav>
 				<div class="border-t border-slate-800 px-4 py-5 text-xs text-slate-400">
-                    
+
 					<p class="font-semibold text-slate-200">Admin Tools</p>
 					<p class="mt-2">Fast access to your content management.</p>
 				</div>

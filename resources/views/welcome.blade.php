@@ -38,8 +38,10 @@
 					<li class="nav-item {{ request()->is('about') ? 'active' : '' }}"><a href="{{ route('about') }}" class="nav-link">About</a></li>
 					<li class="nav-item {{ request()->is('destination') ? 'active' : '' }}"><a href="{{ route('destination') }}" class="nav-link">Packages</a></li>
                     <li class="nav-item {{ request()->is('tours') ? 'active' : '' }}"><a href="{{ route('tours.index') }}" class="nav-link">Tours</a></li>
+                    <li class="nav-item {{ request()->is('taxi') ? 'active' : '' }}"><a href="#" class="nav-link">Taxi</a></li>
 					<li class="nav-item {{ request()->is('contact') ? 'active' : '' }}"><a href="{{ route('contact') }}" class="nav-link">Contact</a></li>
                     <li class="nav-item {{ request()->is('gallery') ? 'active' : '' }}"><a href="{{ route('gallery') }}" class="nav-link">Gallery</a></li>
+
 
 
             @if (Route::has('login'))
@@ -59,7 +61,7 @@
                             class="btn btn-primary mt-3 mr-2"
 
                         >
-                            Log in
+                            Login
                         </a>
                         </li>
 
@@ -69,7 +71,7 @@
                                     href="{{ route('register') }}"
                                     class="btn btn-primary mt-3 "
                                 >
-                                    Register
+                                    Rgstr
                                 </a>
                             </li>
 
@@ -114,9 +116,9 @@
 							<h2 class="ftco-heading-2">About</h2>
 							<p>Feel free to contact Ngey Tours & Safari for tour bookings, safari packages, airport transfers, hotel reservations, and any travel inquiries across Zanzibar and Tanzania.</p>
 							<ul class="ftco-footer-social list-unstyled float-md-left float-lft">
-								<li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="fa fa-instagram"></span></a></li>
+								<li class="ftco-animate"><a href="https://vm.tiktok.com/ZS9YX8xWWukXU-TliBw/"><span class="fa fa-twitter"></span></a></li>
+								<li class="ftco-animate"><a href="https://www.facebook.com/ngeytoursandsafari"><span class="fa fa-facebook"></span></a></li>
+								<li class="ftco-animate"><a href="https://www.facebook.com/search/top?q=ngey%20tour%20and%20safari"><span class="fa fa-instagram"></span></a></li>
 							</ul>
 						</div>
 					</div>
@@ -151,8 +153,8 @@
 							<div class="block-23 mb-3">
 								<ul>
 									<li><span class="icon fa fa-map-marker"></span><span class="text">Zanzibar, Tanzania</span></li>
-									<li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+255392 3929 210</span></a></li>
-									<li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">info@ngeytoursandsafari.com</span></a></li>
+									<li><a href="tel:+255 718 940 807"><span class="icon fa fa-phone"></span><span class="text">+255 718 940 807</span></a></li>
+									<li><a href="mailto:ngeytour@gmail.com"><span class="icon fa fa-paper-plane"></span><span class="text">info@ngeytoursandsafari.com</span></a></li>f
 								</ul>
 							</div>
 						</div>
@@ -187,8 +189,7 @@
 			<script src="{{ asset('js/jquery.animateNumber.min.js') }}"></script>
 			<script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
 			<script src="{{ asset('js/scrollax.min.js') }}"></script>
-			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-			<script src="{{ asset('js/google-map.js') }}"></script>
+			<!-- Google Maps removed; using OpenStreetMap (Leaflet) on pages that need maps -->
 			<script src="{{ asset('js/main.js') }}"></script>
 			@yield('scripts')
 

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TourController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 Route::get('/', function () {
@@ -35,6 +36,7 @@ Route::get('/safari-blue', function () {
 })->name('safari-blue.detail');
 
 Route::get('/contact', [UserController::class, 'contact'])->name('contact');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 Route::get('/blog', [UserController::class, 'blog'])->name('blog');
 Route::resource('tours', TourController::class);
 Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
@@ -42,6 +44,9 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::get('/tours', [AdminController::class, 'tours'])->name('admin.tours');
     Route::get('/tours/create', [AdminController::class, 'createTour'])->name('admin.tours.create');
     Route::post('/tours', [AdminController::class, 'storeTour'])->name('admin.tours.store');
+    Route::get('/contact-messages', [ContactController::class, 'index'])->name('admin.contact.messages');
+    // Backwards-compatible route name expected by admin layout
+    Route::get('/contacts', [ContactController::class, 'index'])->name('admin.contacts');
     Route::get('/packages', [AdminController::class, 'packages'])->name('admin.packages');
     Route::get('/packages/create', [AdminController::class, 'createPackage'])->name('admin.packages.create');
     Route::post('/packages', [AdminController::class, 'storePackage'])->name('admin.packages.store');
