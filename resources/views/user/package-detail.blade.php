@@ -17,7 +17,7 @@
 <section class="ftco-section">
   <div class="container">
     <div class="row">
-      <div class="col-lg-8">
+      <div class="col-md-6">
         <div class="mb-4">
           <img src="{{ asset($package->image ?: 'images/tour_box_1.webp') }}" alt="{{ $package->title }}" class="img-fluid rounded shadow-sm w-100" />
         </div>
@@ -25,41 +25,78 @@
           <h2 class="mb-3">About this package</h2>
           <p>{{ $package->description }}</p>
           <div class="row">
-            <div class="col-md-4 mb-3">
+            <div class="col-md-12 mb-3">
               <div class="border p-3 rounded">
                 <strong>Price</strong>
                 <p>${{ number_format($package->price, 2) }} / person</p>
               </div>
             </div>
-            <div class="col-md-4 mb-3">
+            <div class="col-md-12 mb-3">
               <div class="border p-3 rounded">
                 <strong>Duration</strong>
                 <p>{{ $package->duration ?: 'N/A' }}</p>
               </div>
             </div>
-            <div class="col-md-4 mb-3">
+            <div class="col-md-12 mb-3">
               <div class="border p-3 rounded">
                 <strong>Location</strong>
                 <p>{{ $package->location ?: 'Zanzibar, Tanzania' }}</p>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="mb-4">
-          <h3>Highlights</h3>
-          <ul class="list-disc list-inside">
+            <div class="col-md-12 mb-3">
+              <div class="border p-3 rounded">
+                <strong>Highlights</strong>
+                <ul class="list-disc list-inside">
             @foreach($package->highlights ?? [] as $highlight)
               <li>{{ $highlight }}</li>
             @endforeach
           </ul>
+              </div>
+            </div>
+          </div>
         </div>
+        
       </div>
-      <div class="col-lg-4">
-        <div class="border rounded p-4 bg-white shadow-sm">
-          <h3 class="mb-3">Book this package</h3>
-          <p><strong>Price:</strong> ${{ number_format($package->price, 2) }} / person</p>
-          <p><strong>Duration:</strong> {{ $package->duration ?: 'N/A' }}</p>
-          <a href="{{ route('contact') }}" class="btn btn-primary btn-block">Contact to Book</a>
+       <div class=" col-md-6">
+            <form action="#" class="bg-light p-5 contact-form">
+                <input type="hidden" name="tour_id" value="{{ $package->id }}">
+                <div class="form-group">
+                <input type="text" class="form-control" placeholder="Full Name">
+                </div>
+                <div class="form-group">
+                <input type="text" class="form-control" placeholder="Phone Number">
+                </div>
+                <div class="form-group">
+                <input type="text" class="form-control" placeholder="Email Address">
+                </div>
+                Tour Date
+
+                <div class="form-group">
+                <input type="date" class="form-control" placeholder="">
+                </div>
+                <div class="form-group">
+                <input type="number" min="0" class="form-control" placeholder="Number of Adults">
+                </div>
+                <div class="form-group">
+                <input type="number" min="0" class="form-control" placeholder="Number of Children">
+                </div>
+                <div class="form-group">
+                <input type="text" class="form-control" placeholder="Pickup Location">
+                </div>
+                <div class="form-group">
+                <input type="text" class="form-control" placeholder="Destination">
+                </div>
+                <div class="form-group">
+                <input type="text" class="form-control" placeholder="Pickup Location">
+                </div>
+                <div class="form-group">
+                <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Special Requests"></textarea>
+                </div>
+                <div class="form-group">
+                <input type="submit" value="Request Quote" class="btn btn-primary py-3 px-5">
+                </div>
+            </form>
+
         </div>
       </div>
     </div>

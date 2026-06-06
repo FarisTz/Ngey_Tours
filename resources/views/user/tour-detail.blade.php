@@ -35,47 +35,47 @@
                     </a>
                 </div>
             </div>
-<div class=" col-md-6">
-        <form action="#" class="bg-light p-5 contact-form">
-            <input type="hidden" name="tour_id" value="{{ $tour->id }}">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Full Name">
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Phone Number">
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Email Address">
-          </div>
-          Tour Date
-           <div class="form-group
-          <div class="form-group">
-            <input type="date" class="form-control" placeholder="">
-          </div>
-          <div class="form-group">
-            <input type="number" min="0" class="form-control" placeholder="Number of Adults">
-          </div>
-          <div class="form-group">
-            <input type="number" min="0" class="form-control" placeholder="Number of Children">
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Pickup Location">
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Destination">
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Pickup Location">
-          </div>
-          <div class="form-group">
-            <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Special Requests"></textarea>
-          </div>
-          <div class="form-group">
-            <input type="submit" value="Request Quote" class="btn btn-primary py-3 px-5">
-          </div>
-        </form>
+        <div class=" col-md-6">
+            <form action="#" class="bg-light p-5 contact-form">
+                <input type="hidden" name="tour_id" value="{{ $tour->id }}">
+                <div class="form-group">
+                <input type="text" class="form-control" placeholder="Full Name">
+                </div>
+                <div class="form-group">
+                <input type="text" class="form-control" placeholder="Phone Number">
+                </div>
+                <div class="form-group">
+                <input type="text" class="form-control" placeholder="Email Address">
+                </div>
+                Tour Date
+                <div class="form-group
+                <div class="form-group">
+                <input type="date" class="form-control" placeholder="">
+                </div>
+                <div class="form-group">
+                <input type="number" min="0" class="form-control" placeholder="Number of Adults">
+                </div>
+                <div class="form-group">
+                <input type="number" min="0" class="form-control" placeholder="Number of Children">
+                </div>
+                <div class="form-group">
+                <input type="text" class="form-control" placeholder="Pickup Location">
+                </div>
+                <div class="form-group">
+                <input type="text" class="form-control" placeholder="Destination">
+                </div>
+                <div class="form-group">
+                <input type="text" class="form-control" placeholder="Pickup Location">
+                </div>
+                <div class="form-group">
+                <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Special Requests"></textarea>
+                </div>
+                <div class="form-group">
+                <input type="submit" value="Request Quote" class="btn btn-primary py-3 px-5">
+                </div>
+            </form>
 
-      </div>
+        </div>
         </div>
     </div>
 </section>
