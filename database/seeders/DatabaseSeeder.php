@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\User;
 use Database\Seeders\TourSeeder;
 use Database\Seeders\PackageSeeder;
+use Database\Seeders\TaxiRouteSeeder;
+use Database\Seeders\TaxiVehicleSeeder;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -25,6 +27,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             TourSeeder::class,
             PackageSeeder::class,
+            TaxiRouteSeeder::class,
+            TaxiVehicleSeeder::class,
         ]);
     }
 }

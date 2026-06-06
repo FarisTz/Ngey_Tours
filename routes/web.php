@@ -37,7 +37,10 @@ Route::get('/safari-blue', function () {
 
 Route::get('/contact', [UserController::class, 'contact'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::get('/taxi', [UserController::class, 'taxi'])->name('taxi');
+Route::post('/taxi/book', [UserController::class, 'bookTaxi'])->name('taxi.book');
 Route::get('/blog', [UserController::class, 'blog'])->name('blog');
+Route::get('/packages/{slug}', [UserController::class, 'showPackage'])->name('package.detail');
 Route::resource('tours', TourController::class);
 Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
@@ -50,4 +53,24 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::get('/packages', [AdminController::class, 'packages'])->name('admin.packages');
     Route::get('/packages/create', [AdminController::class, 'createPackage'])->name('admin.packages.create');
     Route::post('/packages', [AdminController::class, 'storePackage'])->name('admin.packages.store');
+    Route::get('/taxi-routes', [AdminController::class, 'taxiRoutes'])->name('admin.taxi.routes');
+    Route::get('/taxi-routes/create', [AdminController::class, 'createTaxiRoute'])->name('admin.taxi.routes.create');
+    Route::post('/taxi-routes', [AdminController::class, 'storeTaxiRoute'])->name('admin.taxi.routes.store');
+    Route::get('/taxi-vehicles', [AdminController::class, 'taxiVehicles'])->name('admin.taxi.vehicles');
+    Route::get('/taxi-vehicles/create', [AdminController::class, 'createTaxiVehicle'])->name('admin.taxi.vehicles.create');
+    Route::post('/taxi-vehicles', [AdminController::class, 'storeTaxiVehicle'])->name('admin.taxi.vehicles.store');
+    Route::get('/taxi-vehicles/{vehicle}', [AdminController::class, 'showTaxiVehicle'])->name('admin.taxi.vehicles.show');
+    Route::patch('/taxi-vehicles/{vehicle}', [AdminController::class, 'updateTaxiVehicle'])->name('admin.taxi.vehicles.update');
+    Route::delete('/taxi-vehicles/{vehicle}', [AdminController::class, 'destroyTaxiVehicle'])->name('admin.taxi.vehicles.destroy');
+
+    // User Management Routes
+    Route::get('/users', [\App\Http\Controllers\AdminUserController::class, 'index'])->name('admin.users.index');
+    Route::get('/users/create', [\App\Http\Controllers\AdminUserController::class, 'create'])->name('admin.users.create');
+    Route::post('/users', [\App\Http\Controllers\AdminUserController::class, 'store'])->name('admin.users.store');
+    Route::get('/users/{user}/edit', [\App\Http\Controllers\AdminUserController::class, 'edit'])->name('admin.users.edit');
+    Route::patch('/users/{user}', [\App\Http\Controllers\AdminUserController::class, 'update'])->name('admin.users.update');
+    Route::delete('/users/{user}', [\App\Http\Controllers\AdminUserController::class, 'destroy'])->name('admin.users.destroy');
+
+    // Gallery Management Route
+    Route::resource('gallery', \App\Http\Controllers\GalleryController::class)->names('admin.gallery');
 });

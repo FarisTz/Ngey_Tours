@@ -4,7 +4,8 @@
 
 
 
-<div class="hero-wrap js-fullheight" style="background-image: url('/images/beach_hero.jpg');">
+
+<div id="hero-slideshow" class="hero-wrap js-fullheight" style="background-image: url('/images/beach_hero.jpg'); transition: background-image 1.5s ease-in-out;">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row no-gutters slider-text js-fullheight align-items-center" data-scrollax-parent="true">
@@ -18,6 +19,24 @@
 			</div>
 		</div>
 	</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const images = [
+            '/images/beach_hero.jpg',
+            '/images/dhow_boat.jpg',
+            '/images/car.jpg',
+            '/images/bg_4.jpg'
+        ];
+        let currentIndex = 0;
+        const heroWrap = document.getElementById('hero-slideshow');
+
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % images.length;
+            heroWrap.style.backgroundImage = `url('${images[currentIndex]}')`;
+        }, 5000); // 5000ms = 5 seconds
+    });
+</script>
 		<section class="ftco-section services-section">
 			<div class="container">
 				<div class="row d-flex">

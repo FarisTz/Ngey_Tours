@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Tour;
 use App\Models\Package;
+use App\Models\TaxiRoute;
+use App\Models\TaxiVehicle;
 use App\Models\Booking;
 use App\Models\Notification;
 use Illuminate\Http\Request;
@@ -18,6 +20,7 @@ class AdminController extends Controller
             'packages' => Package::count(),
             'bookings' => Booking::count(),
             'notifications' => Notification::count(),
+            'routes' => TaxiRoute::count(),
         ];
 
         $packages = Package::orderBy('created_at', 'desc')->get();
@@ -108,4 +111,108 @@ class AdminController extends Controller
 
         return redirect()->route('admin.packages')->with('success', 'Package created successfully.');
     }
+
+    public function taxiRoutes()
+    {
+        $routes = TaxiRoute::orderBy('pickup_location')->orderBy('destination')->get();
+        return view('admin.taxi_routes.index', compact('routes'));
+    }
+
+    public function createTaxiRoute()
+    {
+        return view('admin.taxi_routes.create');
+    }
+
+    public function storeTaxiRoute(Request $request)
+    {
+        $data = $request->validate([
+            'pickup_location' => 'required|string|max:255',
+            'destination' => 'required|string|max:255',
+            'distance' => 'required|string|max:255',
+            'duration' => 'required|string|max:255',
+            'price' => 'required|string|max:50',
+            'status' => 'required|string|in:active,inactive',
+        ]);
+
+        TaxiRoute::create($data);
+
+        return redirect()->route('admin.taxi.routes')->with('success', 'Taxi route created successfully.');
+    }
+
+    public function taxiVehicles()
+    {
+        $vehicles = TaxiVehicle::orderBy('name')->get();
+        return view('admin.taxi_vehicles.index', compact('vehicles'));
+    }
+
+    public function createTaxiVehicle()
+    {
+        return view('admin.taxi_vehicles.create');
+    }
+
+    public function storeTaxiVehicle(Request $request)
+    {
+        $data = $request->validate([
+            'name' => 'required|string|max:255|unique:taxi_vehicles,name',
+            'capacity' => 'required|string|max:255',
+            'type' => 'required|string|max:255',
+            'tag' => 'required|string|max:255',
+            'image' => 'nullable|image|file|max:2048',
+            'status' => 'required|string|in:active,inactive',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . preg_replace('/[^A-Za-z0-9_\-\.]/', '_', $image->getClientOriginalName());
+            if (!File::exists(public_path('images/vehicles'))) {
+                File::makeDirectory(public_path('images/vehicles'), 0755, true);
+            }
+            $image->move(public_path('images/vehicles'), $imageName);
+            $data['image'] = 'images/vehicles/' . $imageName;
+        }
+
+        TaxiVehicle::create($data);
+
+        return redirect()->route('admin.taxi.vehicles')->with('success', 'Vehicle added successfully.');
+    }
+
+    public function showTaxiVehicle(TaxiVehicle $vehicle)
+    {
+        return response()->json($vehicle);
+    }
+
+    public function updateTaxiVehicle(Request $request, TaxiVehicle $vehicle)
+    {
+        $data = $request->validate([
+            'name' => 'required|string|max:255|unique:taxi_vehicles,name,' . $vehicle->id,
+            'capacity' => 'required|string|max:255',
+            'type' => 'required|string|max:255',
+            'tag' => 'required|string|max:255',
+            'image' => 'nullable|image|file|max:2048',
+            'status' => 'required|string|in:active,inactive',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . preg_replace('/[^A-Za-z0-9_\-\.]/', '_', $image->getClientOriginalName());
+            if (!File::exists(public_path('images/vehicles'))) {
+                File::makeDirectory(public_path('images/vehicles'), 0755, true);
+            }
+            $image->move(public_path('images/vehicles'), $imageName);
+            $data['image'] = 'images/vehicles/' . $imageName;
+        }
+
+        $vehicle->update($data);
+
+        return response()->json(['message' => 'Vehicle updated successfully.', 'vehicle' => $vehicle]);
+    }
+
+    public function destroyTaxiVehicle(TaxiVehicle $vehicle)
+    {
+        $vehicle->delete();
+        return response()->json(['message' => 'Vehicle deleted successfully.']);
+    }
+    
 }
+
+

@@ -96,12 +96,12 @@
     @forelse($packages as $package)
       <div class="col-md-4 ftco-animate">
         <div class="project-wrap">
-          <a href="#" class="img" style="background-image: url({{ asset($package->image ?: 'images/tour_box_1.webp') }});">
+          <a href="{{ route('package.detail', $package->slug) }}" class="img" style="background-image: url({{ asset($package->image ?: 'images/tour_box_1.webp') }});">
             <span class="price">${{ number_format($package->price, 2) }}/person</span>
           </a>
           <div class="text p-4">
             <span class="days">{{ $package->duration ?: 'Tour Package' }}</span>
-            <h3><a href="#">{{ $package->title }}</a></h3>
+            <h3><a href="{{ route('package.detail', $package->slug) }}">{{ $package->title }}</a></h3>
             <p class="location"><span class="fa fa-map-marker"></span> {{ $package->location ?: 'Zanzibar, Tanzania' }}</p>
             <ul>
               <li><span class="flaticon-shower"></span>{{ $package->highlights[0] ?? 'Adventure' }}</li>
@@ -109,6 +109,7 @@
               <li><span class="flaticon-mountains"></span>{{ $package->highlights[2] ?? 'Escape' }}</li>
             </ul>
             <p><strong>Highlights:</strong> {{ implode(', ', array_filter($package->highlights ?? [])) }}</p>
+            <a href="{{ route('package.detail', $package->slug) }}" class="btn btn-primary btn-sm">View Details</a>
             <button class="btn btn-primary btn-book-now" data-tour="{{ $package->slug }}">Book Now</button>
           </div>
         </div>

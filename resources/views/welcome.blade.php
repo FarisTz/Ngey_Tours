@@ -38,7 +38,7 @@
 					<li class="nav-item {{ request()->is('about') ? 'active' : '' }}"><a href="{{ route('about') }}" class="nav-link">About</a></li>
 					<li class="nav-item {{ request()->is('destination') ? 'active' : '' }}"><a href="{{ route('destination') }}" class="nav-link">Packages</a></li>
                     <li class="nav-item {{ request()->is('tours') ? 'active' : '' }}"><a href="{{ route('tours.index') }}" class="nav-link">Tours</a></li>
-                    <li class="nav-item {{ request()->is('taxi') ? 'active' : '' }}"><a href="#" class="nav-link">Taxi</a></li>
+					<li class="nav-item {{ request()->is('taxi') ? 'active' : '' }}"><a href="{{ route('taxi') }}" class="nav-link">Taxi</a></li>
 					<li class="nav-item {{ request()->is('contact') ? 'active' : '' }}"><a href="{{ route('contact') }}" class="nav-link">Contact</a></li>
                     <li class="nav-item {{ request()->is('gallery') ? 'active' : '' }}"><a href="{{ route('gallery') }}" class="nav-link">Gallery</a></li>
 
@@ -65,17 +65,7 @@
                         </a>
                         </li>
 
-                        @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a
-                                    href="{{ route('register') }}"
-                                    class="btn btn-primary mt-3 "
-                                >
-                                    Rgstr
-                                </a>
-                            </li>
-
-                        @endif
+                       
                     @endauth
 
             @endif

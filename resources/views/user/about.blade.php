@@ -3,7 +3,7 @@
 @section('content')
 
 
- <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('images/spice-prison-1.webp');">
+ <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('images/spice-prison-1.webp'); transition: background-image 1.5s ease-in-out" id="hero-slideshow">
   <div class="overlay"></div>
   <div class="container">
     <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
@@ -16,14 +16,24 @@
  </div>
 </section>
 
-<section class="ftco-section services-section">
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const images = [
+            '/images/spice-prison-1.webp',
+            '/images/stone_town.jpg',
+            '/images/dhow-sailing-on-ocean-and-mnemba-island-1.webp',
+            '/images/bg_4.jpg'
+        ];
+        let currentIndex = 0;
+        const heroWrap = document.getElementById('hero-slideshow');
 
-</section>
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % images.length;
+            heroWrap.style.backgroundImage = `url('${images[currentIndex]}')`;
+        }, 5000); // 5000ms = 5 seconds
+    });
+</script>
 
-
-
-
-<section class="ftco-section ftco-about ftco-no-pt img">
  <div class="container">
   <div class="row d-flex">
    <div class="col-md-12 about-intro">

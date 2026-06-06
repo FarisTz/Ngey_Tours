@@ -1,7 +1,77 @@
 @extends('welcome')
 @section('title','Gallery')
 @section('content')
+<style>
+	.gallery-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+    height: 280px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    cursor: pointer;
+}
 
+.gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s ease;
+}
+
+/* Zoom effect */
+.gallery-card:hover img {
+    transform: scale(1.1);
+}
+
+/* Dark overlay */
+.gallery-card .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.7),
+        rgba(0,0,0,0.1)
+    );
+    opacity: 0;
+    transition: 0.4s ease;
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+}
+
+/* Show overlay on hover */
+.gallery-card:hover .overlay {
+    opacity: 1;
+}
+
+/* Text content */
+.gallery-card .content {
+    color: white;
+}
+
+.gallery-card .content h5 {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* Button */
+.btn-view {
+    display: inline-block;
+    padding: 6px 14px;
+    background: #ff5a5f;
+    color: white;
+    border-radius: 20px;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.btn-view:hover {
+    background: #ff2e34;
+}
+</style>
 <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url({{ asset('images/nungwi_beach.jpg') }});">
 	<div class="overlay"></div>
 	<div class="container">
@@ -25,16 +95,41 @@
 			</div>
 		</div>
 		<div class="row">
-			@foreach(range(1, 9) as $index)
-				<div class="col-md-4 ftco-animate">
-					<div class="gallery-entry" style="background-image: url({{ asset('images/gallery-' . $index . '.jpg') }});">
-						<a href="{{ asset('images/safari_blue.jpg') }}" class="icon image-popup d-flex justify-content-center align-items-center">
-							<span class="fa fa-search"></span>
-						</a>
-					</div>
-				</div>
-			@endforeach
-		</div>
+
+@forelse($galleries as $gallery)
+
+    <div class="col-lg-4 col-md-6 ftco-animate mb-4">
+
+        <div class="gallery-card">
+
+            <!-- Image -->
+            <img src="{{ asset($gallery->image) }}" alt="{{ $gallery->title }}">
+
+            <!-- Overlay -->
+            <div class="overlay">
+                <div class="content">
+                    <h5>{{ $gallery->title }}</h5>
+
+                    <a href="{{ asset($gallery->image) }}"
+                       class="btn-view image-popup">
+                        View Photo
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+@empty
+
+    <div class="col-12 text-center py-5">
+        <p class="text-muted">No gallery images available yet.</p>
+    </div>
+
+@endforelse
+
+</div>
 	</div>
 </section>
 
