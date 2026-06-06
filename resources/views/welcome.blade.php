@@ -91,7 +91,6 @@
      <div class="overlay"></div>
      <h2>We Are Ngey Tours & Safari</h2>
      <p>We create unforgettable travel experiences across Zanzibar and Tanzania. From relaxing beach holidays to exciting safaris and cultural adventures, our team is dedicated to making your dream vacation comfortable, enjoyable, and memorable. Explore the beauty of nature, history, and island life with trusted local travel experts.</p>
-     <p class="mb-0"><a href="#" class="btn btn-primary px-4 py-3">Ask For A Quote</a></p>
    </div>
  </div>
 </div>
@@ -117,9 +116,9 @@
 							<h2 class="ftco-heading-2">Infromation</h2>
 							<ul class="list-unstyled">
 
-								<li><a href="#" class="py-2 d-block">Booking Conditions</a></li>
-								<li><a href="#" class="py-2 d-block">Privacy and Policy</a></li>
-								<li><a href="#" class="py-2 d-block">Refund Policy</a></li>
+								<li><a href="{{ route('booking-conditions') }}" class="py-2 d-block">Booking Conditions</a></li>
+								<li><a href="{{ route('privacy-policy') }}" class="py-2 d-block">Privacy and Policy</a></li>
+								<li><a href="{{ route('refund-policy') }}" class="py-2 d-block">Refund Policy</a></li>
 
 							</ul>
 						</div>
@@ -128,12 +127,11 @@
 						<div class="ftco-footer-widget pt-md-5 mb-4">
 							<h2 class="ftco-heading-2">Experience</h2>
 							<ul class="list-unstyled">
-								<li><a href="#" class="py-2 d-block">Adventure</a></li>
-								<li><a href="#" class="py-2 d-block">Hotel and Restaurant</a></li>
-								<li><a href="#" class="py-2 d-block">Beach</a></li>
-								<li><a href="#" class="py-2 d-block">Nature</a></li>
-								<li><a href="#" class="py-2 d-block">Camping</a></li>
-								<li><a href="#" class="py-2 d-block">Party</a></li>
+								<li><a href="{{ route('gallery') }}" class="py-2 d-block">Gallery</a></li>
+								<li><a href="{{ route('tours.index') }}" class="py-2 d-block">Tours & Safari</a></li>
+								<li><a href="{{ route('about') }}" class="py-2 d-block">About</a></li>
+								<li><a href="{{ route('contact') }}" class="py-2 d-block">Contact</a></li>
+
 							</ul>
 						</div>
 					</div>
@@ -144,7 +142,7 @@
 								<ul>
 									<li><span class="icon fa fa-map-marker"></span><span class="text">Zanzibar, Tanzania</span></li>
 									<li><a href="tel:+255 718 940 807"><span class="icon fa fa-phone"></span><span class="text">+255 718 940 807</span></a></li>
-									<li><a href="mailto:ngeytour@gmail.com"><span class="icon fa fa-paper-plane"></span><span class="text">info@ngeytoursandsafari.com</span></a></li>f
+									<li><a href="mailto:ngeytour@gmail.com"><span class="icon fa fa-paper-plane"></span><span class="text">ngeytour@gmail.com</span></a></li>
 								</ul>
 							</div>
 						</div>

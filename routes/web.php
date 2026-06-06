@@ -42,6 +42,9 @@ Route::post('/taxi/book', [UserController::class, 'bookTaxi'])->name('taxi.book'
 Route::get('/blog', [UserController::class, 'blog'])->name('blog');
 Route::get('/packages/{slug}', [UserController::class, 'showPackage'])->name('package.detail');
 Route::resource('tours', TourController::class);
+Route::view('/booking-conditions', 'user.booking-conditions')->name('booking-conditions');
+Route::view('/privacy-policy', 'user.privacy-policy')->name('privacy-policy');
+Route::view('/refund-policy', 'user.refund-policy')->name('refund-policy');
 Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/tours', [AdminController::class, 'tours'])->name('admin.tours');

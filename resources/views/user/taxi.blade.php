@@ -2,7 +2,7 @@
 @section('title', 'Taxi')
 @section('content')
 
-<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('{{ asset('images/nungwi_beach.jpg') }}');">
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('{{ asset('images/car.jpg') }}');">
   <div class="overlay"></div>
   <div class="container">
     <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
@@ -12,7 +12,11 @@
         <p class="mb-4 text-white">Comfortable and dependable taxi transfers with professional drivers, fixed prices, and easy online booking.</p>
         <p>
           <a href="#booking" class="btn btn-primary py-3 px-5 me-2">Book Now</a>
-          <a href="https://wa.me/255718940807" target="_blank" class="btn btn-outline-white py-3 px-5 btn-whatsapp-book">WhatsApp Booking</a>
+          <a href="https://wa.me/255627805837?text=Hello%2C%20I%20want%20to%20book%20a%20taxi.%0A%0APickup%20location%3A%20%0ADestination%3A%20%0ATime%3A%20%0ANumber%20of%20passengers%3A%20"
+            class="btn btn-outline-secondary w-50"
+            target="_blank">
+            Book Taxi
+          </a>
         </p>
       </div>
     </div>
@@ -77,15 +81,14 @@
               <div class="col-md-6">
                 <label class="form-label">Vehicle Type</label>
                 <select name="vehicle_type" class="form-select" required>
-                  <option value="Toyota Alphard">Toyota Alphard</option>
-                  <option value="Toyota Hiace">Toyota Hiace</option>
+                  <option value="Toyota Alphard">Alphard</option>
                   <option value="Coaster Bus">Coaster Bus</option>
                 </select>
               </div>
             </div>
             <div class="mb-3 mt-3">
               <label class="form-label">WhatsApp Number</label>
-              <input type="text" name="whatsapp_number" class="form-control" value="{{ old('whatsapp_number') }}" placeholder="+255 7XX XXX XXX" required>
+              <input type="text" name="whatsapp_number" class="form-control" value="{{ old('whatsapp_number') }}" placeholder="include country code" required>
             </div>
             <div class="d-flex gap-2">
               <button type="submit" class="btn btn-primary w-50">Get Quote</button>
