@@ -1,5 +1,5 @@
 @extends('welcome')
-@section('title','Contact US')
+@section('title','Login')
 @section('content')
 
  <!-- Hero section with background image same style -->
