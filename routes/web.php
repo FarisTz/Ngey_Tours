@@ -38,6 +38,10 @@ Route::get('/safari-blue', function () {
     return view('user.safari-blue-detail');
 })->name('safari-blue.detail');
 
+
+
+
+
 Route::get('/contact', [UserController::class, 'contact'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 Route::get('/taxi', [UserController::class, 'taxi'])->name('taxi');
@@ -48,6 +52,40 @@ Route::resource('tours', TourController::class);
 Route::view('/booking-conditions', 'user.booking-conditions')->name('booking-conditions');
 Route::view('/privacy-policy', 'user.privacy-policy')->name('privacy-policy');
 Route::view('/refund-policy', 'user.refund-policy')->name('refund-policy');
+
+
+
+
+
+
+// User Booking Routes (accessible to everyone)
+Route::prefix('bookings')->name('user.booking.')->group(function () {
+    // Tour Booking Routes
+
+    Route::post('/tour', [UserController::class, 'bookTour'])->name('tour.store');
+
+    // Package Booking Routes
+
+    Route::post('/package', [UserController::class, 'bookPackage'])->name('package.store');
+
+    // Car Booking Routes
+
+    Route::post('/car', [UserController::class, 'bookCar'])->name('car.store');
+
+    // Confirmation and Viewing Routes
+    // Route::get('/confirmation/{bookingId}', [UserController::class, 'showConfirmation'])->name('confirmation');
+    // Route::get('/my-bookings', [UserController::class, 'myBookings'])->name('my-bookings');
+    // Route::get('/view/{reference}', [UserController::class, 'viewBooking'])->name('view');
+    // Route::post('/cancel/{id}', [UserController::class, 'cancelBooking'])->name('cancel');
+
+   
+});
+
+
+
+
+
+
 Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/tours', [AdminController::class, 'tours'])->name('admin.tours');
@@ -86,6 +124,12 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
 
         // View single booking
     Route::get('booking/{id}', [BookingController::class, 'show'])->name('admin.bookings.show');
+
+     // Update booking status
+        Route::put('booking/{id}/status', [BookingController::class, 'updateStatus'])->name('admin.bookings.update-status');
+
+        // Delete booking
+        Route::delete('booking/{id}', [BookingController::class, 'destroy'])->name('admin.bookings.destroy');
 
 
 

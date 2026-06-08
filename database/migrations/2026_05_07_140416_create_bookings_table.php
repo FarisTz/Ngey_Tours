@@ -15,6 +15,7 @@ return new class extends Migration
 
             $table->string('Full_name')->nullable();
             $table->string('Email')->nullable();
+            $table->string('phone')->nullable();
             // Links to specific items (only one will be filled per booking)
             $table->foreignId('tour_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('package_id')->nullable()->constrained()->onDelete('set null');
@@ -30,10 +31,7 @@ return new class extends Migration
             $table->string('pickup_location')->nullable();
             $table->string('destination')->nullable();
 
-            // Pricing
-            $table->decimal('subtotal', 10, 2);
-            $table->decimal('discount', 10, 2)->default(0);
-            $table->decimal('total_price', 10, 2);
+
 
             // Status
             $table->enum('status', [

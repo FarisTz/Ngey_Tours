@@ -21,4 +21,8 @@ class Tour extends Model
     protected $casts = [
         'highlights' => 'array',
     ];
+     public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
 }

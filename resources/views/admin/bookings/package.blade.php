@@ -132,7 +132,7 @@
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Package</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Travel Dates</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Travelers</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Total</th>
+
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Status</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Booked On</th>
                         <th class="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">Actions</th>
@@ -170,13 +170,7 @@
                             <div class="font-medium">{{ $booking->num_adults + $booking->num_children }} total</div>
                             <div class="text-xs">👤 {{ $booking->num_adults }} adults | 👶 {{ $booking->num_children }} children</div>
                         </td>
-                        <td class="whitespace-nowrap px-6 py-4 text-sm">
-                            <div class="font-medium text-gray-900">{{ number_format($booking->total_price, 0) }} TZS</div>
-                            @if($booking->discount > 0)
-                                <div class="text-xs text-green-600">Saved: {{ number_format($booking->discount, 0) }} TZS</div>
-                            @endif
-                            <div class="text-xs text-gray-500">Subtotal: {{ number_format($booking->subtotal, 0) }} TZS</div>
-                        </td>
+
                         <td class="whitespace-nowrap px-6 py-4 text-sm">
                             <form method="POST" action="{{ route('admin.bookings.update-status', $booking->id) }}" class="inline">
                                 @csrf

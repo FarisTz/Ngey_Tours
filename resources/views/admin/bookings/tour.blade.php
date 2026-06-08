@@ -132,7 +132,7 @@
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Tour</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Tour Date</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Guests</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Total</th>
+
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Status</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Booked On</th>
                         <th class="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">Actions</th>
@@ -169,12 +169,7 @@
                             <div class="font-medium">{{ $booking->num_adults + $booking->num_children }}</div>
                             <div class="text-xs">{{ $booking->num_adults }} adults, {{ $booking->num_children }} children</div>
                         </td>
-                        <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
-                            {{ number_format($booking->total_price, 0) }} TZS
-                            @if($booking->discount > 0)
-                                <div class="text-xs text-green-600">-{{ number_format($booking->discount, 0) }} TZS</div>
-                            @endif
-                        </td>
+                        
                         <td class="whitespace-nowrap px-6 py-4 text-sm">
                             <form method="POST" action="{{ route('admin.bookings.update-status', $booking->id) }}" class="inline">
                                 @csrf

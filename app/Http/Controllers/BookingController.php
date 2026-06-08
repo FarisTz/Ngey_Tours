@@ -176,24 +176,60 @@ class BookingController extends Controller
     /**
      * Display single booking details
      */
-    public function show($id)
-    {
-        $booking = Booking::with(['user'])->findOrFail($id);
 
-        // Load specific booking details based on type
-        $details = null;
-        switch ($booking->booking_type) {
-            case 'tour':
-                $details = TourBooking::with(['tour'])->where('booking_id', $id)->first();
-                break;
-            case 'package':
-                $details = PackageBooking::with(['package'])->where('booking_id', $id)->first();
-                break;
-            case 'car':
-                $details = CarBooking::with(['vehicle', 'route'])->where('booking_id', $id)->first();
-                break;
+        public function show($id)
+    {
+        $booking = Booking::with(['tour', 'package'])->findOrFail($id);
+
+        // Calculate duration in days if end_date exists
+        $duration = null;
+        if ($booking->start_date && $booking->end_date) {
+            $duration = $booking->start_date->diffInDays($booking->end_date) + 1;
         }
 
-        return view('admin.bookings.show', compact('booking', 'details'));
+        return view('admin.bookings.show', compact('booking', 'duration'));
     }
+
+
+    /**
+     * Update booking status
+     */
+    public function updateStatus(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|in:pending,confirmed,ongoing,completed,cancelled',
+            'admin_notes' => 'nullable|string'
+        ]);
+
+        $booking = Booking::findOrFail($id);
+        $oldStatus = $booking->status;
+        $booking->status = $request->status;
+
+        if ($request->filled('admin_notes')) {
+            $booking->admin_notes = $request->admin_notes;
+        }
+
+        $booking->save();
+
+        // Optional: Send email notification to customer about status change
+        // if ($oldStatus != $request->status) {
+        //     Mail::to($booking->Email)->send(new BookingStatusUpdated($booking));
+        // }
+
+        return redirect()->back()->with('success', 'Booking status updated successfully!');
+    }
+
+    /**
+     * Delete booking
+     */
+    public function destroy($id)
+    {
+        $booking = Booking::findOrFail($id);
+        $booking->delete();
+
+        return redirect()->route('admin.bookings.all')
+            ->with('success', 'Booking deleted successfully!');
+    }
+    
+
 }

@@ -7,6 +7,7 @@ use Database\Seeders\TourSeeder;
 use Database\Seeders\PackageSeeder;
 use Database\Seeders\TaxiRouteSeeder;
 use Database\Seeders\TaxiVehicleSeeder;
+use Database\Seeders\BookingSeeder;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -29,6 +30,7 @@ class DatabaseSeeder extends Seeder
             PackageSeeder::class,
             TaxiRouteSeeder::class,
             TaxiVehicleSeeder::class,
+            BookingSeeder::class,
         ]);
     }
 }

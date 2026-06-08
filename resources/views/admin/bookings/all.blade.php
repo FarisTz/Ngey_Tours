@@ -97,7 +97,7 @@
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Item</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Dates</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Guests</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Total</th>
+
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Status</th>
                         <th class="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">Actions</th>
                     </tr>
@@ -140,9 +140,7 @@
                             {{ $booking->num_adults + $booking->num_children }} total
                             <div class="text-xs">({{ $booking->num_adults }} adults, {{ $booking->num_children }} children)</div>
                         </td>
-                        <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
-                            {{ number_format($booking->total_price, 2) }} TZS
-                        </td>
+                        
                         <td class="whitespace-nowrap px-6 py-4 text-sm">
                             <form method="POST" action="{{ route('admin.bookings.update-status', $booking->id) }}" class="inline">
                                 @csrf

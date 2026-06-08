@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Tour;
+use App\Models\Booking;
 use App\Models\Package;
 use App\Models\TaxiBooking;
 use App\Models\TaxiRoute;
 use App\Models\TaxiVehicle;
-
+use App\Models\Tour;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 class UserController extends Controller
 {
     //
@@ -102,6 +104,72 @@ class UserController extends Controller
     {
         $galleries = \App\Models\Gallery::latest()->get();
         return view('user.gallery', compact('galleries'));
+    }
+
+
+
+
+
+
+     public function bookTour(Request $request)
+    {
+        $request->validate([
+            'tour_id' => 'required|exists:tours,id',
+            'full_name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'nullable|string|max:20',
+            'start_date' => 'required|date|after_or_equal:today',
+            'end_date' => 'nullable|date|after_or_equal:start_date',
+            'num_adults' => 'required|integer|min:1|max:50',
+            'num_children' => 'required|integer|min:0|max:50',
+            'special_requests' => 'nullable|string|max:1000',
+            // 'terms_agreed' => 'accepted',
+        ]);
+
+
+
+        // Get the tour
+        $tour = Tour::findOrFail($request->tour_id);
+
+        // Calculate pricing
+
+
+
+
+        // Generate unique booking reference
+        $bookingReference = 'TR-' . strtoupper(Str::random(8)) . '-' . date('Ymd');
+
+        // Create booking
+
+        /**
+         * Process tour booking
+         */
+        $booking = Booking::create([
+            'booking_type' => 'tour',
+            'Full_name' => $request->full_name,
+            'Email' => $request->email,
+            'phone' => $request->phone,
+            'tour_id' => $request->tour_id,
+            'package_id' => null,
+            'start_date' => $request->start_date,
+
+            'num_children' => $request->num_children,
+            'num_adults' => $request->num_adults,
+            'special_requests' => $request->special_requests,
+            'pickup_location' => $request->pickup_location ?? null,
+            'destination' => $request->destination ?? null,
+            'status' => 'pending',
+            'booking_reference' => $bookingReference,
+            'admin_notes' => null,
+        ]);
+
+        // Send confirmation email (optional)
+        // $this->sendBookingConfirmation($booking, $tour);
+
+
+
+        return redirect()->back()
+            ->with('success', 'Your tour booking has been submitted successfully!');
     }
 
 
