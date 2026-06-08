@@ -99,7 +99,7 @@ class BookingSeeder extends Seeder
             'Waiting for payment confirmation',
         ];
 
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             $bookingType = $bookingTypes[array_rand($bookingTypes)];
             $status = $statuses[array_rand($statuses)];
             $customer = $customers[array_rand($customers)];
@@ -125,19 +125,7 @@ class BookingSeeder extends Seeder
             $numAdults = rand(1, 6);
             $numChildren = rand(0, 4);
 
-            // Calculate pricing
-            $basePrice = 0;
-            if ($bookingType == 'tour' && $tourId) {
-                $tour = Tour::find($tourId);
-                $basePrice = $tour ? $tour->price * ($numAdults + $numChildren * 0.5) : rand(150000, 500000);
-            } elseif ($bookingType == 'package' && $packageId) {
-                $package = Package::find($packageId);
-                $basePrice = $package ? $package->price * ($numAdults + $numChildren * 0.5) : rand(300000, 1500000);
-            } else {
-                // Car booking pricing
-                $days = $endDate ? $startDate->diffInDays($endDate) + 1 : 1;
-                $basePrice = rand(50000, 300000) * $days;
-            }
+            
 
 
             // Generate unique booking reference
