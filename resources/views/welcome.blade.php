@@ -180,6 +180,7 @@
 			<!-- Google Maps removed; using OpenStreetMap (Leaflet) on pages that need maps -->
 			<script src="{{ asset('js/main.js') }}"></script>
 			@yield('scripts')
+@include('components.whatsapp-float')
 
 		</body>
 		</html>

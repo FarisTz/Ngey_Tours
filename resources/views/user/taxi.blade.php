@@ -11,9 +11,9 @@
         <h1 class="mb-4 text-white">Reliable Taxi Services Across Zanzibar – Airport, Hotels & Beaches</h1>
         <p class="mb-4 text-white">Comfortable and dependable taxi transfers with professional drivers, fixed prices, and easy online booking.</p>
         <p>
-          <a href="#booking" class="btn btn-primary py-3 px-5 me-2">Book Now</a>
-          <a href="https://wa.me/255627805837?text=Hello%2C%20I%20want%20to%20book%20a%20taxi.%0A%0APickup%20location%3A%20%0ADestination%3A%20%0ATime%3A%20%0ANumber%20of%20passengers%3A%20"
-            class="btn btn-outline-secondary w-50"
+          <a href="#booking" class="btn btn-primary me-2" style="width:150px; height:50px; display:inline-flex; align-items:center; justify-content:center;">Book Now</a>
+          <a style="background-color:#eb6434; color:white; width:150px; height:50px; display:inline-flex; align-items:center; justify-content:center;" href="https://wa.me/255718940807?text=Hello%2C%20I%20want%20to%20book%20a%20taxi.%0A%0APickup%20location%3A%20%0ADestination%3A%20%0ATime%3A%20%0ANumber%20of%20passengers%3A%20"
+            class="btn btn-outline-secondary"
             target="_blank">
             Book Taxi
           </a>
