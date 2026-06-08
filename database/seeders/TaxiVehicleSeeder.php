@@ -13,9 +13,9 @@ class TaxiVehicleSeeder extends Seeder
     public function run(): void
     {
         $vehicles = [
-            ['name' => 'Toyota Alphard', 'capacity' => '1–6 Passengers', 'tag' => 'Air Conditioning', 'type' => 'Luxury Transfer', 'image' => 'images/tour_box_1.webp', 'status' => 'active'],
-            ['name' => 'Toyota Hiace', 'capacity' => '7–14 Passengers', 'tag' => 'Family & Group Travel', 'type' => 'Comfort & Space', 'image' => 'images/tour_box_1.webp', 'status' => 'active'],
-            ['name' => 'Coaster Bus', 'capacity' => '15–28 Passengers', 'tag' => 'Tours & Large Groups', 'type' => 'Large Group Travel', 'image' => 'images/tour_box_1.webp', 'status' => 'active'],
+            ['name' => 'Toyota Alphard', 'capacity' => '1–6 Passengers',  'type' => 'Luxury Transfer', 'image' => 'images/tour_box_1.webp', 'status' => 'active'],
+            ['name' => 'Toyota Hiace', 'capacity' => '7–14 Passengers',  'type' => 'Comfort & Space', 'image' => 'images/tour_box_1.webp', 'status' => 'active'],
+            ['name' => 'Coaster Bus', 'capacity' => '15–28 Passengers',  'type' => 'Large Group Travel', 'image' => 'images/tour_box_1.webp', 'status' => 'active'],
         ];
 
         foreach ($vehicles as $vehicle) {

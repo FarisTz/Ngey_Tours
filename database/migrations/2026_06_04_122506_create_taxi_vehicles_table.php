@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('capacity');
             $table->string('type');
-            $table->string('tag');
             $table->string('image')->nullable();
             $table->string('status')->default('active');
             $table->timestamps();

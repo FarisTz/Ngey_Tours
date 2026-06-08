@@ -1,21 +1,22 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\TourController;
-use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TourController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('user.home');
 });
 
 Route::get('/dashboard', function () {
-    
+
         return redirect()->route('admin.dashboard');
-   
+
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -75,6 +76,18 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::get('/users/{user}/edit', [\App\Http\Controllers\AdminUserController::class, 'edit'])->name('admin.users.edit');
     Route::patch('/users/{user}', [\App\Http\Controllers\AdminUserController::class, 'update'])->name('admin.users.update');
     Route::delete('/users/{user}', [\App\Http\Controllers\AdminUserController::class, 'destroy'])->name('admin.users.destroy');
+
+
+
+    Route::get('booking/all', [BookingController::class, 'all'])->name('admin.bookings.all');
+    Route::get('booking/tour', [BookingController::class, 'tourBookings'])->name('admin.bookings.tour');
+    Route::get('booking/package', [BookingController::class, 'packageBookings'])->name('admin.bookings.package');
+    Route::get('booking/car', [BookingController::class, 'carBookings'])->name('admin.bookings.car');
+
+        // View single booking
+    Route::get('booking/{id}', [BookingController::class, 'show'])->name('admin.bookings.show');
+
+
 
     // Gallery Management Route
     Route::resource('gallery', \App\Http\Controllers\GalleryController::class)->names('admin.gallery');
