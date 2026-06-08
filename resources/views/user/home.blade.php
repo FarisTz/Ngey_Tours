@@ -50,7 +50,7 @@
 
                                 Create lasting memories with comfortable transport, experienced local guides, and personalized travel packages made for solo travelers, couples, families, and groups. Your dream holiday starts here with Ngey Tours & Safari.
                             </p>
-							<p><a href="{{ route('destination') }}" class="btn btn-primary py-3 px-4">Search Destination</a></p>
+							<p><a href="{{ route('destination') }}" class="btn btn-primary py-3 px-4">Search Packages</a></p>
 						</div>
 					</div>
 					<div class="col-md-6">
