@@ -53,8 +53,32 @@
           @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
           @endif
-          <form action="{{ route('taxi.book') }}" method="POST">
+          <form action="{{ route('user.booking.car.store') }}" method="POST">
             @csrf
+
+              @if ($errors->any())
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+        <ul class="list-disc pl-5">
+            @foreach ($errors->all() as $error)
+                <li class="text-danger" >{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+
+@endif
+
+            <div class="mb-3 mt-3">
+              <label class="form-label">Full name</label>
+              <input type="text" name="full_name" class="form-control" value="{{ old('full_name') }}" placeholder="Enter your full name" required>
+            </div>
+            <div class="mb-3 mt-3">
+              <label class="form-label">Email</label>
+              <input type="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="Enter your email" required>
+            </div>
+            <div class="mb-3 mt-3">
+              <label class="form-label">Phone Number</label>
+              <input type="text" name="phone" class="form-control" value="{{ old('phone') }}" placeholder="Include country code" required>
+            </div>
             <div class="mb-3">
               <label class="form-label">Pickup Location</label>
               <input type="text" name="pickup_location" class="form-control" value="{{ old('pickup_location') }}" required>
@@ -66,33 +90,37 @@
             <div class="row g-3">
               <div class="col-md-6">
                 <label class="form-label">Date</label>
-                <input type="date" name="travel_date" class="form-control" value="{{ old('travel_date') }}" required>
+                <input type="date" name="pickup_date" class="form-control" value="{{ old('travel_date') }}" required>
               </div>
               <div class="col-md-6">
                 <label class="form-label">Time</label>
-                <input type="time" name="travel_time" class="form-control" value="{{ old('travel_time') }}" required>
+                <input type="time" name="pickup_time" class="form-control" value="{{ old('travel_time') }}" required>
               </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Return Date</label>
+              <input type="date" name="return_date" class="form-control" value="{{ old('return_date') }}">
             </div>
             <div class="row g-3 mt-3">
               <div class="col-md-6">
                 <label class="form-label">Number of Passengers</label>
-                <input type="number" name="passengers" class="form-control" min="1" max="50" value="{{ old('passengers', 1) }}" required>
+                <input type="number" name="num_passengers" class="form-control" min="1" max="50" value="{{ old('num_passengers', 1) }}" required>
               </div>
               <div class="col-md-6">
                 <label class="form-label">Vehicle Type</label>
-                <select name="vehicle_type" class="form-select" required>
-                  <option value="Toyota Alphard">Alphard</option>
-                  <option value="Coaster Bus">Coaster Bus</option>
+                <select name="vehicle_type" class="form-control" required>
+                  <option value="standard">Standard</option>
+                  <option value="premium">Premium</option>
+                  <option value="luxury">Luxury</option>
+                  <option value="minivan">Minivan</option>
+                  <option value="minibus">Minibus</option>
                 </select>
               </div>
             </div>
-            <div class="mb-3 mt-3">
-              <label class="form-label">WhatsApp Number</label>
-              <input type="text" name="whatsapp_number" class="form-control" value="{{ old('whatsapp_number') }}" placeholder="include country code" required>
-            </div>
-            <div class="d-flex gap-2">
-              <button type="submit" class="btn btn-primary w-50">Get Quote</button>
-              <a href="https://wa.me/255718940807" target="_blank" class="btn btn-outline-secondary w-50">Book Taxi</a>
+
+            <div class="mt-3 d-flex justify-content-between">
+              <button type="submit" class="btn btn-primary">Get Quote</button>
+              <a href="https://wa.me/255718940807" target="_blank" class="btn btn-outline-secondary">Book Taxi</a>
             </div>
           </form>
         </div>

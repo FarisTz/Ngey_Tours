@@ -28,8 +28,15 @@ return new class extends Migration
             $table->text('special_requests')->nullable();
 
             // Pickup (mainly for car bookings)
+
             $table->string('pickup_location')->nullable();
+            $table->string('pickup_time')->nullable();
             $table->string('destination')->nullable();
+            $table->string('vehicle_type')->nullable();
+
+
+
+
 
 
 
