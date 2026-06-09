@@ -166,10 +166,13 @@ class UserController extends Controller
         // Send confirmation email (optional)
         // $this->sendBookingConfirmation($booking, $tour);
 
-
+ $notification=[
+            'alert-type'=>'success',
+            'message'=> 'Your tour booking has been submitted successfully!',
+        ];
 
         return redirect()->back()
-            ->with('success', 'Your tour booking has been submitted successfully!');
+            ->with($notification);
     }
 
 
