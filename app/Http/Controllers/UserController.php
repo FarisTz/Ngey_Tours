@@ -10,6 +10,7 @@ use App\Models\TaxiVehicle;
 use App\Models\Tour;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\BookingConfirmation;
 use Illuminate\Support\Str;
 class UserController extends Controller
 {
@@ -142,8 +143,8 @@ class UserController extends Controller
          */
         $booking = Booking::create([
             'booking_type' => 'tour',
-            'Full_name' => $request->full_name,
-            'Email' => $request->email,
+            'full_name' => $request->full_name,
+            'email' => $request->email,
             'phone' => $request->phone,
             'tour_id' => $request->tour_id,
             'package_id' => null,
@@ -160,6 +161,8 @@ class UserController extends Controller
         ]);
 
         // Send confirmation email (optional)
+         Mail::to($booking->email)
+        ->send(new BookingConfirmation($booking));
         // $this->sendBookingConfirmation($booking, $tour);
 
  $notification=[
@@ -206,8 +209,8 @@ class UserController extends Controller
         // Create booking
         $booking = Booking::create([
             'booking_type' => 'package',
-            'Full_name' => $request->full_name,
-            'Email' => $request->email,
+            'full_name' => $request->full_name,
+            'email' => $request->email,
             'phone' => $request->phone,
             'tour_id' => null,
             'package_id' => $request->package_id,
@@ -224,6 +227,8 @@ class UserController extends Controller
         ]);
 
         // Send confirmation email (optional)
+         Mail::to($booking->email)
+        ->send(new BookingConfirmation($booking));
         // $this->sendBookingConfirmation($booking, $package);
 $notification=[
             'alert-type'=>'success',
@@ -269,8 +274,8 @@ $notification=[
         // Create booking
         $booking = Booking::create([
             'booking_type' => 'car',
-            'Full_name' => $request->full_name,
-            'Email' => $request->email,
+            'full_name' => $request->full_name,
+            'email' => $request->email,
             'phone' => $request->phone,
             'tour_id' => null,
             'package_id' => null,
@@ -287,6 +292,8 @@ $notification=[
             'admin_notes' => null,
         ]);
         // Send confirmation email (optional)
+         Mail::to($booking->email)
+        ->send(new BookingConfirmation($booking));
         // $this->sendCarBookingConfirmation($booking);
 
             $notification=[

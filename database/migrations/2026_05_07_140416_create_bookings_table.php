@@ -13,8 +13,8 @@ return new class extends Migration
             // What type of booking
             $table->enum('booking_type', ['tour', 'package', 'car']);
 
-            $table->string('Full_name')->nullable();
-            $table->string('Email')->nullable();
+            $table->string('full_name')->nullable();
+            $table->string('email')->nullable();
             $table->string('phone')->nullable();
             // Links to specific items (only one will be filled per booking)
             $table->foreignId('tour_id')->nullable()->constrained()->onDelete('set null');
