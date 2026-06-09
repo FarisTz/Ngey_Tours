@@ -94,7 +94,7 @@
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Reference</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Customer</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Type</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Item</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Phone</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Dates</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Guests</th>
 
@@ -122,13 +122,7 @@
                             </span>
                         </td>
                         <td class="px-6 py-4 text-sm text-gray-500">
-                            @if($booking->booking_type == 'tour' && $booking->tour)
-                                {{ $booking->tour->name ?? 'N/A' }}
-                            @elseif($booking->booking_type == 'package' && $booking->package)
-                                {{ $booking->package->name ?? 'N/A' }}
-                            @else
-                                Car Booking
-                            @endif
+                            {{ $booking->phone ?? 'N/A' }}
                         </td>
                         <td class="px-6 py-4 text-sm text-gray-500">
                             <div>{{ $booking->start_date->format('M d, Y') }}</div>
@@ -140,7 +134,7 @@
                             {{ $booking->num_adults + $booking->num_children }} total
                             <div class="text-xs">({{ $booking->num_adults }} adults, {{ $booking->num_children }} children)</div>
                         </td>
-                        
+
                         <td class="whitespace-nowrap px-6 py-4 text-sm">
                             <form method="POST" action="{{ route('admin.bookings.update-status', $booking->id) }}" class="inline">
                                 @csrf

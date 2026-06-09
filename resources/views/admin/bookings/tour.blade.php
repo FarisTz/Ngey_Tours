@@ -129,6 +129,7 @@
                     <tr>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Reference</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Customer</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Phone</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Tour</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Tour Date</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Guests</th>
@@ -153,6 +154,9 @@
                                 </div>
                             @endif
                         </td>
+                        <td class="px-6 py-4 text-sm text-gray-500">
+                            {{ $booking->phone ?? 'N/A' }}
+                        </td>
                         <td class="px-6 py-4 text-sm text-gray-900">
                             {{ $booking->tour ? $booking->tour->name : 'N/A' }}
                             @if($booking->tour && $booking->tour->location)
@@ -169,7 +173,7 @@
                             <div class="font-medium">{{ $booking->num_adults + $booking->num_children }}</div>
                             <div class="text-xs">{{ $booking->num_adults }} adults, {{ $booking->num_children }} children</div>
                         </td>
-                        
+
                         <td class="whitespace-nowrap px-6 py-4 text-sm">
                             <form method="POST" action="{{ route('admin.bookings.update-status', $booking->id) }}" class="inline">
                                 @csrf

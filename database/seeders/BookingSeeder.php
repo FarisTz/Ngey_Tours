@@ -99,7 +99,7 @@ class BookingSeeder extends Seeder
             'Waiting for payment confirmation',
         ];
 
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $bookingType = $bookingTypes[array_rand($bookingTypes)];
             $status = $statuses[array_rand($statuses)];
             $customer = $customers[array_rand($customers)];
@@ -125,7 +125,7 @@ class BookingSeeder extends Seeder
             $numAdults = rand(1, 6);
             $numChildren = rand(0, 4);
 
-            
+
 
 
             // Generate unique booking reference

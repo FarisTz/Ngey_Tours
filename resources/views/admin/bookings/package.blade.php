@@ -129,6 +129,7 @@
                     <tr>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Reference</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Customer</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Phone</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Package</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Travel Dates</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Travelers</th>
@@ -152,6 +153,9 @@
                                     📝 Special Request
                                 </div>
                             @endif
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-500">
+                            {{ $booking->phone ?? 'N/A' }}
                         </td>
                         <td class="px-6 py-4 text-sm">
                             <div class="font-medium text-gray-900">{{ $booking->package ? $booking->package->name : 'N/A' }}</div>

@@ -130,6 +130,7 @@
                     <tr>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Reference</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Customer</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Phone</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Trip Details</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Pickup Date</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Passengers</th>
@@ -153,6 +154,9 @@
                                     📝 Special Request
                                 </div>
                             @endif
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-500">
+                            {{ $booking->Phone ?? 'N/A' }}
                         </td>
                         <td class="px-6 py-4 text-sm">
                             <div class="flex items-start gap-2">
@@ -182,7 +186,7 @@
                             <div class="font-medium">{{ $booking->num_adults + $booking->num_children }}</div>
                             <div class="text-xs">👤 {{ $booking->num_adults }} adults | 👶 {{ $booking->num_children }} children</div>
                         </td>
-                        
+
                         <td class="whitespace-nowrap px-6 py-4 text-sm">
                             <form method="POST" action="{{ route('admin.bookings.update-status', $booking->id) }}" class="inline">
                                 @csrf

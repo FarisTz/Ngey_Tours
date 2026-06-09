@@ -59,7 +59,11 @@
                         <label class="text-xs font-medium text-gray-500">Email Address</label>
                         <p class="text-gray-900">{{ $booking->Email }}</p>
                     </div>
-                    <div class="md:col-span-2">
+                    <div >
+                        <label class="text-xs font-medium text-gray-500">Phone</label>
+                        <p class="text-gray-900">{{ $booking->phone ?? 'N/A' }}</p>
+                    </div>
+                    <div >
                         <label class="text-xs font-medium text-gray-500">Special Requests</label>
                         <p class="text-gray-700">{{ $booking->special_requests ?: 'No special requests' }}</p>
                     </div>
@@ -195,7 +199,7 @@
                 </div>
             </div>
 
-          
+
 
             <!-- Admin Notes -->
             <div class="bg-white rounded-lg shadow-sm p-6">
