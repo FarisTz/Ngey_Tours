@@ -47,13 +47,10 @@
             @endforeach
         </ul>
     </div>
-    @if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
 
 @endif
+
+
                 <input type="hidden" name="tour_id" value="{{ $tour->id }}">
                 <div class="form-group">
                 <input type="text" name="full_name" class="form-control" placeholder="Full Name">

@@ -130,11 +130,7 @@ class UserController extends Controller
 
         // Get the tour
         $tour = Tour::findOrFail($request->tour_id);
-
-        // Calculate pricing
-
-
-
+        if($tour){
 
         // Generate unique booking reference
         $bookingReference = 'TR-' . strtoupper(Str::random(8)) . '-' . date('Ymd');
@@ -173,7 +169,81 @@ class UserController extends Controller
 
         return redirect()->back()
             ->with($notification);
+        }else{
+
+        $notification=[
+            'alert-type'=>'error',
+            'message'=> 'Tour not found. Please try again.',
+        ];
+            return redirect()->back()
+            ->with($notification);
+        }
+
     }
+
+
+     public function bookPackage(Request $request)
+    {
+        $request->validate([
+            'package_id' => 'required|exists:packages,id',
+            'full_name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'nullable|string|max:20',
+            'start_date' => 'required|date|after_or_equal:today',
+
+            'num_adults' => 'required|integer|min:1|max:50',
+            'num_children' => 'required|integer|min:0|max:50',
+            'special_requests' => 'nullable|string|max:1000',
+            // 'terms_agreed' => 'accepted',
+        ]);
+
+        // Get the package
+        $package = Package::findOrFail($request->package_id);
+        if($package){
+            // Generate unique booking reference
+        $bookingReference = 'PK-' . strtoupper(Str::random(8)) . '-' . date('Ymd');
+
+        // Create booking
+        $booking = Booking::create([
+            'booking_type' => 'package',
+            'Full_name' => $request->full_name,
+            'Email' => $request->email,
+            'phone' => $request->phone,
+            'tour_id' => null,
+            'package_id' => $request->package_id,
+            'start_date' => $request->start_date,
+
+            'num_children' => $request->num_children,
+            'num_adults' => $request->num_adults,
+            'special_requests' => $request->special_requests,
+            'pickup_location' => $request->pickup_location ?? null,
+            'destination' => $request->destination ?? null,
+            'status' => 'pending',
+            'booking_reference' => $bookingReference,
+            'admin_notes' => null,
+        ]);
+
+        // Send confirmation email (optional)
+        // $this->sendBookingConfirmation($booking, $package);
+$notification=[
+            'alert-type'=>'success',
+            'message'=> 'Your package booking has been submitted successfully!',
+        ];
+        return redirect()->back()
+            ->with($notification);
+    }else{
+        $notification=[
+            'alert-type'=>'error',
+            'message'=> 'Package not found. Please try again.',
+        ];
+        return redirect()->back()
+            ->with($notification);
+    }
+    }
+
+
+
+
 
 
 
