@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\BookingConfirmation;
+use App\Mail\NewBooking;
 use App\Models\Booking;
 use App\Models\Package;
 use App\Models\TaxiBooking;
@@ -166,6 +167,7 @@ class UserController extends Controller
         // Send confirmation email
         try {
             Mail::to($booking->email)->send(new BookingConfirmation($booking, $tour));
+            Mail::to('ngeytour@gmail.com')->send(new NewBooking($booking, $tour));
             Log::info('Booking confirmation email sent successfully to: ' . $booking->email);
 
         } catch (\Exception $e) {
@@ -246,6 +248,8 @@ class UserController extends Controller
        // Send confirmation email
         try {
             Mail::to($booking->email)->send(new BookingConfirmation($booking, $package));
+            Mail::to('ngeytour@gmail.com')->send(new NewBooking($booking, $package));
+
             Log::info('Booking confirmation email sent successfully to: ' . $booking->email);
 
         } catch (\Exception $e) {
@@ -258,9 +262,8 @@ class UserController extends Controller
              return redirect()->back()
             ->with($notification);
 
-
         }
-$notification=[
+        $notification=[
             'alert-type'=>'success',
             'message'=> 'Your package booking has been submitted successfully!',
         ];
@@ -325,6 +328,7 @@ $notification=[
         // Send confirmation email
         try {
             Mail::to($booking->email)->send(new BookingConfirmation($booking));
+            Mail::to('ngeytour@gmail.com')->send(new NewBooking($booking));
             Log::info('Booking confirmation email sent successfully to: ' . $booking->email);
 
         } catch (\Exception $e) {
