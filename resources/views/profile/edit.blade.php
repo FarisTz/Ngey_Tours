@@ -38,7 +38,7 @@
             <input type="password" name="password_confirmation" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
         </div>
         <div class="flex items-center space-x-4">
-            <button type="submit" class="inline-flex items-center bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition">Save Changes</button>
+            <button type="submit" class="inline-flex items-center bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition" style="background-color: var(--brand-orange)">Save Changes</button>
             <button type="button" id="deleteAccountBtn" class="inline-flex items-center bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition">Delete Account</button>
         </div>
     </form>

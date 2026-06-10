@@ -158,10 +158,11 @@ class AdminController extends Controller
         return redirect()->route('admin.taxi.routes')->with('success', 'Taxi route created successfully.');
     }
 
-    public function taxiVehicles()
+    public function destroyTaxiRoute(TaxiRoute $route)
     {
-        $vehicles = TaxiVehicle::orderBy('name')->get();
-        return view('admin.taxi_vehicles.index', compact('vehicles'));
+        $route->delete();
+        return redirect()->route('admin.taxi.routes')
+            ->with('success', 'Taxi route deleted successfully.');
     }
 
     public function createTaxiVehicle()

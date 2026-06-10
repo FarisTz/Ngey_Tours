@@ -117,20 +117,7 @@
                 </form>
             </div>
         </div>
-    </div>
-    <!-- Language Dropdown -->
-    <div class="relative inline-block text-left">
-        <button id="langMenuBtn" class="inline-flex items-center gap-2 rounded-full border bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm transition" style="border-color: rgba(249, 109, 0, 0.3);" onmouseover="this.style.borderColor = '#F96D00'; this.style.backgroundColor = 'rgba(249, 109, 0, 0.05)';" onmouseout="this.style.borderColor = 'rgba(249, 109, 0, 0.3)'; this.style.backgroundColor = 'white';">
-            Language
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        </button>
-        <div id="langDropdown" class="origin-top-right absolute right-0 mt-2 w-32 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden">
-            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="langMenuBtn">
-                <a href="{{ route('admin.setlocale', ['locale' => 'en']) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">English</a>
-                <a href="{{ route('admin.setlocale', ['locale' => 'sw']) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Swahili</a>
-            </div>
-        </div>
-    </div>
+    </div> 
 </div>
                 </div>
             </header>

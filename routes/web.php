@@ -100,12 +100,14 @@ Route::delete('/tours/{tour}', [AdminController::class, 'destroyTour'])->name('a
     Route::get('/contacts', [ContactController::class, 'index'])->name('admin.contacts');
     Route::get('/packages', [AdminController::class, 'packages'])->name('admin.packages');
     Route::get('/packages/create', [AdminController::class, 'createPackage'])->name('admin.packages.create');
+Route::post('/packages', [AdminController::class, 'storePackage'])->name('admin.packages.store');
     Route::get('/packages/{package}', [AdminController::class, 'showPackage'])->name('admin.packages.show');
     Route::get('/packages/{package}/edit', [AdminController::class, 'editPackage'])->name('admin.packages.edit');
     Route::put('/packages/{package}', [AdminController::class, 'updatePackage'])->name('admin.packages.update');
     Route::delete('/packages/{package}', [AdminController::class, 'destroyPackage'])->name('admin.packages.destroy');
     Route::get('/taxi-routes', [AdminController::class, 'taxiRoutes'])->name('admin.taxi.routes');
     Route::get('/taxi-routes/create', [AdminController::class, 'createTaxiRoute'])->name('admin.taxi.routes.create');
+    Route::post('/taxi-routes', [AdminController::class, 'storeTaxiRoute'])->name('admin.taxi.routes.store');
 Route::get('/taxi-routes/{route}/edit', [AdminController::class, 'editTaxiRoute'])->name('admin.taxi.routes.edit');
     Route::put('/taxi-routes/{route}', [AdminController::class, 'updateTaxiRoute'])->name('admin.taxi.routes.update');
     Route::delete('/taxi-routes/{route}', [AdminController::class, 'destroyTaxiRoute'])->name('admin.taxi.routes.destroy');
@@ -149,9 +151,5 @@ Route::get('/taxi-routes/{route}/edit', [AdminController::class, 'editTaxiRoute'
     Route::get('/profile', [ProfileController::class, 'edit'])->name('admin.profile');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('admin.profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('admin.profile.destroy');
-Route::get('/setlocale/{locale}', function ($locale) {
-    App::setLocale($locale);
-    session(['locale' => $locale]);
-    return redirect()->back();
-})->name('admin.setlocale');
+
 });
