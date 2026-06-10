@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BookingConfirmation;
 use App\Models\Booking;
 use App\Models\Package;
 use App\Models\TaxiBooking;
@@ -9,9 +10,10 @@ use App\Models\TaxiRoute;
 use App\Models\TaxiVehicle;
 use App\Models\Tour;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\BookingConfirmation;
 use Illuminate\Support\Str;
+
 class UserController extends Controller
 {
     //
@@ -161,8 +163,14 @@ class UserController extends Controller
         ]);
 
         // Send confirmation email (optional)
-         Mail::to($booking->email)
-        ->send(new BookingConfirmation($booking));
+        // Send confirmation email
+        try {
+            Mail::to($booking->email)->send(new BookingConfirmation($booking, $tour));
+            Log::info('Booking confirmation email sent successfully to: ' . $booking->email);
+       
+        } catch (\Exception $e) {
+            Log::error('Failed to send booking confirmation email: ' . $e->getMessage());
+        }
         // $this->sendBookingConfirmation($booking, $tour);
 
  $notification=[

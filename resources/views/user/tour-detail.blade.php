@@ -53,34 +53,34 @@
 
                 <input type="hidden" name="tour_id" value="{{ $tour->id }}">
                 <div class="form-group">
-                <input type="text" name="full_name" class="form-control" placeholder="Full Name">
+                <input type="text" name="full_name" value="{{ old('full_name') }}" class="form-control" placeholder="Full Name">
                 </div>
                 <div class="form-group">
-                <input type="text" name="phone" class="form-control" placeholder="Phone Number">
+                <input type="text" name="phone" value="{{ old('phone') }}" class="form-control" placeholder="Phone Number">
                 </div>
                 <div class="form-group">
-                <input type="text" name="email" class="form-control" placeholder="Email Address">
+                <input type="text" name="email" value="{{ old('email') }}" class="form-control" placeholder="Email Address">
                 </div>
                 Tour Date
 
                 <div class="form-group">
-                <input type="date" name="start_date" class="form-control" placeholder="Start Date">
+                <input type="date" name="start_date" value="{{ old('start_date') }}" class="form-control" placeholder="Start Date">
                 </div>
                 <div class="form-group">
-                <input type="number" name="num_adults" min="0" class="form-control" placeholder="Number of Adults">
+                <input type="number" name="num_adults" value="{{ old('num_adults') }}" min="0" class="form-control" placeholder="Number of Adults">
                 </div>
                 <div class="form-group">
-                <input type="number" name="num_children" min="0" class="form-control" placeholder="Number of Children">
+                <input type="number" name="num_children" value="{{ old('num_children') }}" min="0" class="form-control" placeholder="Number of Children">
                 </div>
                 <div class="form-group">
-                <input type="text" name="pickup_location" class="form-control" placeholder="Pickup Location">
+                <input type="text" name="pickup_location" value="{{ old('pickup_location') }}" class="form-control" placeholder="Pickup Location">
                 </div>
                 <div class="form-group">
-                <input type="text" name="destination" class="form-control" placeholder="Destination">
+                <input type="text" name="destination" value="{{ old('destination') }}" class="form-control" placeholder="Destination">
                 </div>
 
                 <div class="form-group">
-                <textarea name="special_requests" id="" cols="30" rows="7" class="form-control" placeholder="Special Requests"></textarea>
+                <textarea name="special_requests" id="" cols="30" rows="7" class="form-control" placeholder="Special Requests">{{ old('special_requests') }}</textarea>
                 </div>
                 <div class="form-group">
                 <input type="submit" value="Request Quote" class="btn btn-primary py-3 px-5">
