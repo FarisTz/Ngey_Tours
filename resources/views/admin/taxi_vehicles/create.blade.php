@@ -47,8 +47,8 @@
         </div>
 
         <div class="flex justify-end gap-3">
-            <a href="{{ route('admin.taxi.vehicles') }}" class="inline-flex items-center rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50">Cancel</a>
-            <button type="submit" class="inline-flex items-center rounded-full bg-slate-950 px-5 py-3 text-sm font-medium text-white shadow-sm hover:bg-slate-800">Add Vehicle</button>
+            <a href="{{ route('admin.taxi.vehicles') }}" class="inline-flex items-center rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50" style="background-color: #F96D00; color: white;">Cancel</a>
+            <button type="submit" class="inline-flex items-center rounded-full bg-slate-950 px-5 py-3 text-sm font-medium text-white shadow-sm hover:bg-slate-800" style="background-color: #F96D00; color: white;">Add Vehicle</button>
         </div>
     </form>
 </div>

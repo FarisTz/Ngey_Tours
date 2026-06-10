@@ -39,8 +39,8 @@
             </select>
         </div>
         <div class="flex items-center space-x-4 mt-6">
-            <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">Save</button>
-            <a href="{{ route('admin.taxi.routes') }}" class="px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400">Cancel</a>
+            <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700"style="background-color: #F96D00;">Save</button>
+            <a href="{{ route('admin.taxi.routes') }}" class="px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400" style="background-color: #F96D00; color: white;">Cancel</a>
         </div>
     </form>
 </div>
