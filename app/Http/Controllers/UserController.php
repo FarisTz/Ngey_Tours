@@ -162,16 +162,25 @@ class UserController extends Controller
             'admin_notes' => null,
         ]);
 
-        // Send confirmation email (optional)
+
         // Send confirmation email
         try {
             Mail::to($booking->email)->send(new BookingConfirmation($booking, $tour));
             Log::info('Booking confirmation email sent successfully to: ' . $booking->email);
-       
+
         } catch (\Exception $e) {
-            Log::error('Failed to send booking confirmation email: ' . $e->getMessage());
+
+          Log::error('Failed to send booking confirmation email: ' . $e->getMessage());
+            $notification=[
+                'alert-type'=>'error',
+                'message'=> 'Your booking was successful, but we failed to send a confirmation email. Please contact support.',
+            ];
+             return redirect()->back()
+            ->with($notification);
+
+
         }
-        // $this->sendBookingConfirmation($booking, $tour);
+
 
  $notification=[
             'alert-type'=>'success',
@@ -234,10 +243,23 @@ class UserController extends Controller
             'admin_notes' => null,
         ]);
 
-        // Send confirmation email (optional)
-         Mail::to($booking->email)
-        ->send(new BookingConfirmation($booking));
-        // $this->sendBookingConfirmation($booking, $package);
+       // Send confirmation email
+        try {
+            Mail::to($booking->email)->send(new BookingConfirmation($booking, $package));
+            Log::info('Booking confirmation email sent successfully to: ' . $booking->email);
+
+        } catch (\Exception $e) {
+
+          Log::error('Failed to send booking confirmation email: ' . $e->getMessage());
+            $notification=[
+                'alert-type'=>'error',
+                'message'=> 'Your booking was successful, but we failed to send a confirmation email. Please contact support.',
+            ];
+             return redirect()->back()
+            ->with($notification);
+
+
+        }
 $notification=[
             'alert-type'=>'success',
             'message'=> 'Your package booking has been submitted successfully!',
@@ -299,10 +321,24 @@ $notification=[
             'booking_reference' => $bookingReference,
             'admin_notes' => null,
         ]);
-        // Send confirmation email (optional)
-         Mail::to($booking->email)
-        ->send(new BookingConfirmation($booking));
-        // $this->sendCarBookingConfirmation($booking);
+
+        // Send confirmation email
+        try {
+            Mail::to($booking->email)->send(new BookingConfirmation($booking));
+            Log::info('Booking confirmation email sent successfully to: ' . $booking->email);
+
+        } catch (\Exception $e) {
+
+          Log::error('Failed to send booking confirmation email: ' . $e->getMessage());
+            $notification=[
+                'alert-type'=>'error',
+                'message'=> 'Your booking was successful, but we failed to send a confirmation email. Please contact support.',
+            ];
+             return redirect()->back()
+            ->with($notification);
+
+
+        }
 
             $notification=[
                 'alert-type'=>'success',

@@ -265,7 +265,7 @@
                 <div class="info-grid">
                     <div class="info-item">
                         <div class="info-label">Package Name</div>
-                        <div class="info-value">{{ $item ? $item->name : 'N/A' }}</div>
+                        <div class="info-value">{{ $item ? $item->title : 'N/A' }}</div>
                     </div>
                     <div class="info-item">
                         <div class="info-label">Duration</div>
@@ -320,11 +320,11 @@
                     @endif
                     <div class="info-item">
                         <div class="info-label">Vehicle Type</div>
-                        <div class="info-value">{{ ucfirst($carDetails->vehicle_type ?? 'Standard') }}</div>
+                        <div class="info-value">{{ ucfirst($booking->vehicle_type ?? 'Standard') }}</div>
                     </div>
                     <div class="info-item">
                         <div class="info-label">Passengers</div>
-                        <div class="info-value">{{ $carDetails->num_passengers ?? $booking->num_adults }}</div>
+                        <div class="info-value">{{ $booking->num_passengers ?? $booking->num_adults + $booking->num_children }}</div>
                     </div>
                 </div>
             </div>
@@ -375,7 +375,7 @@
                     <li>Bring a valid ID or passport for verification</li>
                     <li>Keep your booking reference number handy</li>
                     <li>Cancellations must be made at least 24 hours in advance</li>
-                    <li>Contact us at +255 XXX XXX XXX for any assistance</li>
+                    <li>Contact us at +255 718 940 807 for any assistance</li>
                 </ul>
             </div>
 
@@ -398,13 +398,13 @@
             <p>
                 <a href="https://wa.me/255718940807" target="_blank" >Chat with us on WhatsApp</a> <br>
                 <a href="tel:+255 718 940 807">📞 +255 718 940 807</a><br>
-                ✉️ info@ngeytours.com<br>
+                ✉️ ngeytour@gmail.com<br>
                 🌐 www.ngeytours.com
             </p>
             <div class="social-links">
-                <a href="https://www.facebook.com/ngeytoursandsafari">Facebook</a> |
-                <a href="#">Instagram</a> |
-                <a href="#">Twitter</a>
+                <a href="https://www.facebook.com/profile.php?id=61579176561192">Facebook</a> |
+                <a href="https://www.instagram.com/ngeytour/">Instagram</a> |
+                <a href="https://www.tiktok.com/@ngeytour?is_from_webapp=1&sender_device=pc">TikTok</a>
             </div>
             <p style="margin-top: 20px; font-size: 11px;">
                 This is an automated confirmation email. Please do not reply directly to this message.

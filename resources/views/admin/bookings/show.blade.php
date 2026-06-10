@@ -53,11 +53,11 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label class="text-xs font-medium text-gray-500">Full Name</label>
-                        <p class="text-gray-900 font-medium">{{ $booking->Full_name }}</p>
+                        <p class="text-gray-900 font-medium">{{ $booking->full_name }}</p>
                     </div>
                     <div>
                         <label class="text-xs font-medium text-gray-500">Email Address</label>
-                        <p class="text-gray-900">{{ $booking->Email }}</p>
+                        <p class="text-gray-900">{{ $booking->email }}</p>
                     </div>
                     <div >
                         <label class="text-xs font-medium text-gray-500">Phone</label>

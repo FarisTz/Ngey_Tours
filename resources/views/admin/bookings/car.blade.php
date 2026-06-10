@@ -147,8 +147,8 @@
                             {{ $booking->booking_reference }}
                         </td>
                         <td class="px-6 py-4 text-sm text-gray-500">
-                            <div class="font-medium text-gray-900">{{ $booking->Full_name }}</div>
-                            <div class="text-xs">{{ $booking->Email }}</div>
+                            <div class="font-medium text-gray-900">{{ $booking->full_name }}</div>
+                            <div class="text-xs">{{ $booking->email }}</div>
                             @if($booking->special_requests)
                                 <div class="text-xs text-brand mt-1 cursor-help" title="{{ $booking->special_requests }}">
                                     📝 Special Request
@@ -156,7 +156,7 @@
                             @endif
                         </td>
                         <td class="px-6 py-4 text-sm text-gray-500">
-                            {{ $booking->Phone ?? 'N/A' }}
+                            {{ $booking->phone ?? 'N/A' }}
                         </td>
                         <td class="px-6 py-4 text-sm">
                             <div class="flex items-start gap-2">

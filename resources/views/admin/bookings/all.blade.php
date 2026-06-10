@@ -109,8 +109,8 @@
                             {{ $booking->booking_reference }}
                         </td>
                         <td class="px-6 py-4 text-sm text-gray-500">
-                            <div class="font-medium text-gray-900">{{ $booking->Full_name }}</div>
-                            <div class="text-xs">{{ $booking->Email }}</div>
+                            <div class="font-medium text-gray-900">{{ $booking->full_name }}</div>
+                            <div class="text-xs">{{ $booking->email }}</div>
                         </td>
                         <td class="whitespace-nowrap px-6 py-4 text-sm">
                             <span class="inline-flex rounded-full px-2 text-xs font-semibold leading-5
