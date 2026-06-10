@@ -27,9 +27,9 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                    @forelse($messages as $msg)
+                    @forelse($messages as $key => $msg)
                         <tr>
-                            <td class="px-4 py-2 text-sm text-gray-700">{{ $msg->id }}</td>
+                            <td class="px-4 py-2 text-sm text-gray-700">{{ $key + 1 }}</td>
                             <td class="px-4 py-2 text-sm text-gray-700">{{ $msg->name }}</td>
                             <td class="px-4 py-2 text-sm text-gray-700"><a href="mailto:{{ $msg->email }}" class="text-blue-500 hover:text-blue-700">{{ $msg->email }}</a></td>
                             <td class="px-4 py-2 text-sm text-gray-700">{{ $msg->subject }}</td>
