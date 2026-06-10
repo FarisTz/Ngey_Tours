@@ -21,7 +21,7 @@
             <p class="text-sm font-medium uppercase tracking-wider text-gray-500">Bookings</p>
             <p class="mt-4 text-5xl font-bold text-gray-900">{{ $stats['bookings'] }}</p>
             <p class="mt-2 text-sm text-gray-500">Recent booking requests</p>
-            <button class="mt-6 inline-flex items-center rounded-full bg-green-500 px-4 py-2 text-sm font-medium text-white shadow-md transition hover:bg-green-600">View Bookings</button>
+            <a href="{{ route('admin.bookings.all') }}" class="mt-6 inline-flex items-center rounded-full bg-orange-500 px-4 py-2 text-sm font-medium text-white shadow-md transition hover:bg-orange-600">View Bookings</a>
         </div>
         <div class="rounded-2xl border border-gray-100 bg-white p-8 shadow-xl transition-shadow duration-300 hover:shadow-2xl">
             <p class="text-sm font-medium uppercase tracking-wider text-gray-500">Taxi Routes</p>

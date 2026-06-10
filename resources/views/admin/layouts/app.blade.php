@@ -174,6 +174,38 @@
             }
         });
     </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const userBtn = document.getElementById('userMenuBtn');
+      const userMenu = document.getElementById('userDropdown');
+      const langBtn = document.getElementById('langMenuBtn');
+      const langMenu = document.getElementById('langDropdown');
+
+      if (userBtn && userMenu) {
+        userBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          userMenu.classList.toggle('hidden');
+        });
+        document.addEventListener('click', function(e) {
+          if (!userBtn.contains(e.target) && !userMenu.contains(e.target)) {
+            userMenu.classList.add('hidden');
+          }
+        });
+      }
+
+      if (langBtn && langMenu) {
+        langBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          langMenu.classList.toggle('hidden');
+        });
+        document.addEventListener('click', function(e) {
+          if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
+            langMenu.classList.add('hidden');
+          }
+        });
+      }
+    });
+    </script>
 
     @yield('scripts')
 </body>
