@@ -57,7 +57,7 @@
                     </div>
                     <div>
                         <label class="text-xs font-medium text-gray-500">Email Address</label>
-                        <p class="text-gray-900">{{ $booking->email }}</p>
+                        <p class="text-gray-900"><a href="mailto:{{ $booking->email }}" class="text-blue-500 hover:text-blue-700">{{ $booking->email }}</a></p>
                     </div>
                     <div >
                         <label class="text-xs font-medium text-gray-500">Phone</label>
