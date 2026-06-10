@@ -3,9 +3,7 @@
 namespace App\Mail;
 
 use App\Models\Booking;
-use App\Models\Tour;
-use App\Models\Package;
-use App\Models\CarBooking;
+
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;

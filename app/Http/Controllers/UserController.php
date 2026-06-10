@@ -43,6 +43,24 @@ class UserController extends Controller
         return view('user.contact');
     }
 
+    public function storeContact(Request $request)
+    {
+        $request->validate([
+            'name' => 'nullable|string|max:255',
+            'email' => 'nullable|email|max:255',
+            'subject' => 'nullable|string|max:255',
+            'message' => 'required|string|max:5000',
+        ]);
+
+        \App\Models\ContactMessage::create($request->only('name', 'email', 'subject', 'message'));
+        $notification=[
+            'alert-type'=>'success',
+            'message'=> 'Your message has been sent successfully. We will get back to you soon.',
+        ];
+
+        return redirect()->back()->with($notification);
+    }
+
     public function taxi()
     {
         $features = [
@@ -81,7 +99,12 @@ class UserController extends Controller
 
         TaxiBooking::create($data);
 
-        return redirect()->route('taxi')->with('success', 'Your taxi request has been received. We will contact you shortly.');
+        $notification=[
+            'alert-type'=>'success',
+            'message'=> 'Your taxi request has been received. We will contact you shortly.',
+        ];
+
+        return redirect()->back()->with($notification);
     }
     public function blog()
     {

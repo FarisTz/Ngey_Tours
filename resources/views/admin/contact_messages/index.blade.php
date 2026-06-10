@@ -31,7 +31,7 @@
                         <tr>
                             <td class="px-4 py-2 text-sm text-gray-700">{{ $msg->id }}</td>
                             <td class="px-4 py-2 text-sm text-gray-700">{{ $msg->name }}</td>
-                            <td class="px-4 py-2 text-sm text-gray-700">{{ $msg->email }}</td>
+                            <td class="px-4 py-2 text-sm text-gray-700"><a href="mailto:{{ $msg->email }}" class="text-blue-500 hover:text-blue-700">{{ $msg->email }}</a></td>
                             <td class="px-4 py-2 text-sm text-gray-700">{{ $msg->subject }}</td>
                             <td class="px-4 py-2 text-sm text-gray-700">{{ Str::limit($msg->message, 120) }}</td>
                             <td class="px-4 py-2 text-sm text-gray-500">{{ $msg->created_at->format('Y-m-d H:i') }}</td>
