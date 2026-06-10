@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\BookingConfirmation;
+use App\Mail\NewBooking;
 use App\Models\Booking;
 use App\Models\Package;
 use App\Models\TaxiBooking;
@@ -40,6 +41,24 @@ class UserController extends Controller
     public function contact()
     {
         return view('user.contact');
+    }
+
+    public function storeContact(Request $request)
+    {
+        $request->validate([
+            'name' => 'nullable|string|max:255',
+            'email' => 'nullable|email|max:255',
+            'subject' => 'nullable|string|max:255',
+            'message' => 'required|string|max:5000',
+        ]);
+
+        \App\Models\ContactMessage::create($request->only('name', 'email', 'subject', 'message'));
+        $notification=[
+            'alert-type'=>'success',
+            'message'=> 'Your message has been sent successfully. We will get back to you soon.',
+        ];
+
+        return redirect()->back()->with($notification);
     }
 
     public function taxi()
@@ -80,7 +99,12 @@ class UserController extends Controller
 
         TaxiBooking::create($data);
 
-        return redirect()->route('taxi')->with('success', 'Your taxi request has been received. We will contact you shortly.');
+        $notification=[
+            'alert-type'=>'success',
+            'message'=> 'Your taxi request has been received. We will contact you shortly.',
+        ];
+
+        return redirect()->back()->with($notification);
     }
     public function blog()
     {
@@ -166,6 +190,7 @@ class UserController extends Controller
         // Send confirmation email
         try {
             Mail::to($booking->email)->send(new BookingConfirmation($booking, $tour));
+            Mail::to('ngeytour@gmail.com')->send(new NewBooking($booking, $tour));
             Log::info('Booking confirmation email sent successfully to: ' . $booking->email);
 
         } catch (\Exception $e) {
@@ -246,6 +271,8 @@ class UserController extends Controller
        // Send confirmation email
         try {
             Mail::to($booking->email)->send(new BookingConfirmation($booking, $package));
+            Mail::to('ngeytour@gmail.com')->send(new NewBooking($booking, $package));
+
             Log::info('Booking confirmation email sent successfully to: ' . $booking->email);
 
         } catch (\Exception $e) {
@@ -258,9 +285,8 @@ class UserController extends Controller
              return redirect()->back()
             ->with($notification);
 
-
         }
-$notification=[
+        $notification=[
             'alert-type'=>'success',
             'message'=> 'Your package booking has been submitted successfully!',
         ];
@@ -325,6 +351,7 @@ $notification=[
         // Send confirmation email
         try {
             Mail::to($booking->email)->send(new BookingConfirmation($booking));
+            Mail::to('ngeytour@gmail.com')->send(new NewBooking($booking));
             Log::info('Booking confirmation email sent successfully to: ' . $booking->email);
 
         } catch (\Exception $e) {

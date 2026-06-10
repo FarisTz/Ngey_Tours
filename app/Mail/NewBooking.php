@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use App\Models\Booking;
-
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -11,7 +10,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class BookingConfirmation extends Mailable
+class NewBooking extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -39,7 +38,7 @@ class BookingConfirmation extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Booking Confirmation - ' . $this->booking->booking_reference,
+            subject: 'New Booking - ' . $this->booking->booking_reference,
         );
     }
 
@@ -49,7 +48,7 @@ class BookingConfirmation extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.booking-confirmation',
+            view: 'emails.new-booking',
         );
     }
 

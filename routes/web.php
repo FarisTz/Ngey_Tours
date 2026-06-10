@@ -43,7 +43,7 @@ Route::get('/safari-blue', function () {
 
 
 Route::get('/contact', [UserController::class, 'contact'])->name('contact');
-Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::post('/contact', [ContactController::class, 'storeContact'])->name('contact.store');
 Route::get('/taxi', [UserController::class, 'taxi'])->name('taxi');
 Route::post('/taxi/book', [UserController::class, 'bookTaxi'])->name('taxi.book');
 Route::get('/blog', [UserController::class, 'blog'])->name('blog');
@@ -78,7 +78,7 @@ Route::prefix('bookings')->name('user.booking.')->group(function () {
     // Route::get('/view/{reference}', [UserController::class, 'viewBooking'])->name('view');
     // Route::post('/cancel/{id}', [UserController::class, 'cancelBooking'])->name('cancel');
 
-   
+
 });
 
 
