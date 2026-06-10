@@ -99,7 +99,7 @@ class BookingSeeder extends Seeder
             'Waiting for payment confirmation',
         ];
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 6; $i++) {
             $bookingType = $bookingTypes[array_rand($bookingTypes)];
             $status = $statuses[array_rand($statuses)];
             $customer = $customers[array_rand($customers)];

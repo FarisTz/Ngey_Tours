@@ -29,24 +29,5 @@ class TourSeeder extends Seeder
             ]
         );
 
-        Tour::updateOrCreate(
-            ['slug' => 'spice-prison-stone'],
-            [
-                'title' => 'Spice Farms, Prison Island & Stone Town Tour',
-                'short' => 'Full day combined experiences tour visiting spice farms, prison island and Stone Town.',
-                'image' => 'images/stone-town-tour1.png',
-                'description' => 'This full-day tour starts with a drive to Spice Farms where a local guide shows the spice cultivation process, followed by a spiced rice lunch with tropical fruits. After lunch the group heads to Prison Island to see the giant tortoises, then a boat ride to Stone Town for a historic walk covering House of Wonders, Freddie Mercury House, Sultan’s Palace and the bustling market.',
-                'highlights' => [
-                    'Smell and testing the spices grown in Zanzibar Islands',
-                    'Spiced Rice Pilau Lunch at the spice farm',
-                    'Tropical Fruits; Mangoes, Bananas, Pineapple, Watermelon etc.',
-                    'Visit historical sites in Stone Town; House of Wonders, Freddie Mercury House etc.',
-                    'Swimming, Snorkeling, feeding the Giant tortoises at Prison Island.',
-                ],
-                'price' => 48.00,
-                'duration' => 'Full Day',
-                'location' => 'Stone Town & Prison Island',
-            ]
-        );
     }
 }
