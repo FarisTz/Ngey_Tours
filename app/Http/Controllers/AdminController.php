@@ -124,6 +124,37 @@ class AdminController extends Controller
         return redirect()->route('admin.packages')->with('success', 'Package updated successfully.');
     }
 
+    // Store a new package
+    public function storePackage(Request $request)
+    {
+        $data = $request->validate([
+            'slug' => 'required|string|unique:packages,slug',
+            'title' => 'required|string|max:255',
+            'short' => 'nullable|string',
+            'image' => 'nullable|file|max:2048',
+            'description' => 'required|string',
+            'highlights' => 'nullable|string',
+            'price' => 'required|numeric|min:0',
+            'duration' => 'nullable|string|max:255',
+            'location' => 'nullable|string|max:255',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . preg_replace('/[^A-Za-z0-9_\-\.]/', '_', $image->getClientOriginalName());
+            if (!File::exists(public_path('images/packages'))) {
+                File::makeDirectory(public_path('images/packages'), 0755, true);
+            }
+            $image->move(public_path('images/packages'), $imageName);
+            $data['image'] = 'images/packages/' . $imageName;
+        }
+
+        $data['highlights'] = $data['highlights'] ? array_filter(array_map('trim', explode('\n', $data['highlights']))) : [];
+        Package::create($data);
+
+        return redirect()->route('admin.packages')->with('success', 'Package created successfully.');
+    }
+
     // Delete a specific package
     public function destroyPackage(Package $package)
     {
@@ -131,15 +162,28 @@ class AdminController extends Controller
         return redirect()->route('admin.packages')->with('success', 'Package deleted successfully.');
     }
 
+
+
     public function taxiRoutes()
     {
         $routes = TaxiRoute::orderBy('pickup_location')->orderBy('destination')->get();
         return view('admin.taxi_routes.index', compact('routes'));
     }
 
+    public function taxiVehicles()
+    {
+        $vehicles = TaxiVehicle::orderBy('created_at', 'desc')->paginate(15);
+        return view('admin.taxi_vehicles.index', compact('vehicles'));
+    }
+
     public function createTaxiRoute()
     {
         return view('admin.taxi_routes.create');
+    }
+
+    public function editTaxiRoute(TaxiRoute $route)
+    {
+        return view('admin.taxi_routes.edit', compact('route'));
     }
 
     public function storeTaxiRoute(Request $request)
