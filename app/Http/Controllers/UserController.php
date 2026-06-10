@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use App\Models\ContactMessage;
 
 class UserController extends Controller
 {
@@ -52,7 +53,7 @@ class UserController extends Controller
             'message' => 'required|string|max:5000',
         ]);
 
-        \App\Models\ContactMessage::create($request->only('name', 'email', 'subject', 'message'));
+        ContactMessage::create($request->only('name', 'email', 'subject', 'message'));
         $notification=[
             'alert-type'=>'success',
             'message'=> 'Your message has been sent successfully. We will get back to you soon.',
