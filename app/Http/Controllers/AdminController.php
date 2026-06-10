@@ -72,7 +72,7 @@ class AdminController extends Controller
 
     public function packages()
     {
-        $packages = Package::orderBy('created_at', 'desc')->get();
+        $packages = Package::orderBy('created_at', 'desc')->paginate(15);
         return view('admin.packages.index', compact('packages'));
     }
 
@@ -81,10 +81,23 @@ class AdminController extends Controller
         return view('admin.packages.create');
     }
 
-    public function storePackage(Request $request)
+    // Show a specific package
+    public function showPackage(Package $package)
+    {
+        return view('admin.packages.show', compact('package'));
+    }
+
+    // Edit a specific package
+    public function editPackage(Package $package)
+    {
+        return view('admin.packages.edit', compact('package'));
+    }
+
+    // Update a specific package
+    public function updatePackage(Request $request, Package $package)
     {
         $data = $request->validate([
-            'slug' => 'required|string|unique:packages,slug',
+            'slug' => 'required|string|unique:packages,slug,' . $package->id,
             'title' => 'required|string|max:255',
             'short' => 'nullable|string',
             'image' => 'nullable|file|max:2048',
@@ -106,10 +119,16 @@ class AdminController extends Controller
         }
 
         $data['highlights'] = $data['highlights'] ? array_filter(array_map('trim', explode('\n', $data['highlights']))) : [];
+        $package->update($data);
 
-        Package::create($data);
+        return redirect()->route('admin.packages')->with('success', 'Package updated successfully.');
+    }
 
-        return redirect()->route('admin.packages')->with('success', 'Package created successfully.');
+    // Delete a specific package
+    public function destroyPackage(Package $package)
+    {
+        $package->delete();
+        return redirect()->route('admin.packages')->with('success', 'Package deleted successfully.');
     }
 
     public function taxiRoutes()
@@ -213,6 +232,56 @@ class AdminController extends Controller
         return response()->json(['message' => 'Vehicle deleted successfully.']);
     }
     
-}
+    // Show a specific tour in admin
+    public function showTour(Tour $tour)
+    {
+        return view('admin.tours.show', compact('tour'));
+    }
+
+    // Edit a specific tour in admin
+    public function editTour(Tour $tour)
+    {
+        return view('admin.tours.edit', compact('tour'));
+    }
+
+    // Update a specific tour
+    public function updateTour(Request $request, Tour $tour)
+    {
+        $data = $request->validate([
+            'slug' => 'required|string|unique:tours,slug,' . $tour->id,
+            'title' => 'required|string|max:255',
+            'short' => 'nullable|string',
+            'image' => 'nullable|file|max:2048',
+            'description' => 'required|string',
+            'highlights' => 'nullable|string',
+            'price' => 'required|numeric|min:0',
+            'duration' => 'nullable|string|max:255',
+            'location' => 'nullable|string|max:255',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . preg_replace('/[^A-Za-z0-9_\-\.]/', '_', $image->getClientOriginalName());
+            if (!File::exists(public_path('images/tours'))) {
+                File::makeDirectory(public_path('images/tours'), 0755, true);
+            }
+            $image->move(public_path('images/tours'), $imageName);
+            $data['image'] = 'images/tours/' . $imageName;
+        }
+
+        $data['highlights'] = $data['highlights'] ? array_filter(array_map('trim', explode('\n', $data['highlights']))) : [];
+        $tour->update($data);
+        return redirect()->route('admin.tours')->with('success', 'Tour updated successfully.');
+    }
+
+    // Delete a specific tour
+    public function destroyTour(Tour $tour)
+    {
+        $tour->delete();
+        return redirect()->route('admin.tours')->with('success', 'Tour deleted successfully.');
+    }
+
+    }
+
 
 

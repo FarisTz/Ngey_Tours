@@ -4,7 +4,7 @@
 	<title>Ngey Tours - @yield('title')</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Arizonia&display=swap" rel="stylesheet">
 
@@ -105,11 +105,40 @@
 						<div class="ftco-footer-widget pt-md-5 mb-4">
 							<h2 class="ftco-heading-2">About</h2>
 							<p>Feel free to contact Ngey Tours & Safari for tour bookings, safari packages, airport transfers, hotel reservations, and any travel inquiries across Zanzibar and Tanzania.</p>
-							<ul class="ftco-footer-social list-unstyled float-md-left float-lft">
-								<li class="ftco-animate"><a href="https://vm.tiktok.com/ZS9YX8xWWukXU-TliBw/"><span class="fa fa-twitter"></span></a></li>
-								<li class="ftco-animate"><a href="https://www.facebook.com/ngeytoursandsafari"><span class="fa fa-facebook"></span></a></li>
-								<li class="ftco-animate"><a href="https://www.facebook.com/search/top?q=ngey%20tour%20and%20safari"><span class="fa fa-instagram"></span></a></li>
-							</ul>
+							<ul class="list-inline mb-0">
+    <li class="list-inline-item mx-2">
+        <a href="https://www.facebook.com/profile.php?id=61579176561192"
+           target="_blank"
+           class="btn btn-outline-primary rounded-circle">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+    </li>
+
+    <li class="list-inline-item mx-2">
+        <a href="https://www.tiktok.com/@ngeytour?is_from_webapp=1&sender_device=pc"
+           target="_blank"
+           class="btn btn-outline-dark rounded-circle">
+            <i class="fab fa-tiktok"></i>
+        </a>
+    </li>
+
+    <li class="list-inline-item mx-2">
+        <a href="https://www.instagram.com/ngeytour/"
+           target="_blank"
+           class="btn btn-outline-danger rounded-circle">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </li>
+
+    <li class="list-inline-item mx-2">
+        <a href="https://wa.me/255718940807"
+           target="_blank"
+           class="btn btn-outline-success rounded-circle">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </li>
+</ul> 
+							
 						</div>
 					</div>
 					<div class="col-md pt-5 border-left">

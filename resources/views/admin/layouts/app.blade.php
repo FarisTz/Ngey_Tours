@@ -60,7 +60,6 @@
                 <a href="{{ route('admin.packages') }}" class="rounded-xl px-4 py-3 font-medium transition {{ request()->routeIs('admin.packages*') ? 'text-white' : 'text-gray-300' }}" style="{{ request()->routeIs('admin.packages*') ? 'background-color: rgba(249, 109, 0, 0.2); border-left: 4px solid #F96D00; color: #F96D00;' : 'border-left: 4px solid transparent;' }}" onmouseover="if(!this.style.borderLeftColor.includes('249')) { this.style.backgroundColor = 'rgba(249, 109, 0, 0.2)'; this.style.color = '#F96D00'; }" onmouseout="if(!this.classList.contains('active')) { this.style.backgroundColor = ''; this.style.color = 'rgb(209, 213, 219)'; }">Packages</a>
                 <a href="{{ route('admin.taxi.routes') }}" class="rounded-xl px-4 py-3 font-medium transition {{ request()->routeIs('admin.taxi.routes*') ? 'text-white' : 'text-gray-300' }}" style="{{ request()->routeIs('admin.taxi.routes*') ? 'background-color: rgba(249, 109, 0, 0.2); border-left: 4px solid #F96D00; color: #F96D00;' : 'border-left: 4px solid transparent;' }}" onmouseover="if(!this.style.borderLeftColor.includes('249')) { this.style.backgroundColor = 'rgba(249, 109, 0, 0.2)'; this.style.color = '#F96D00'; }" onmouseout="if(!this.classList.contains('active')) { this.style.backgroundColor = ''; this.style.color = 'rgb(209, 213, 219)'; }">Taxi Routes</a>
                 <a href="{{ route('admin.taxi.vehicles') }}" class="rounded-xl px-4 py-3 font-medium transition {{ request()->routeIs('admin.taxi.vehicles*') ? 'text-white' : 'text-gray-300' }}" style="{{ request()->routeIs('admin.taxi.vehicles*') ? 'background-color: rgba(249, 109, 0, 0.2); border-left: 4px solid #F96D00; color: #F96D00;' : 'border-left: 4px solid transparent;' }}" onmouseover="if(!this.style.borderLeftColor.includes('249')) { this.style.backgroundColor = 'rgba(249, 109, 0, 0.2)'; this.style.color = '#F96D00'; }" onmouseout="if(!this.classList.contains('active')) { this.style.backgroundColor = ''; this.style.color = 'rgb(209, 213, 219)'; }">Taxi Vehicles</a>
-                <a href="#" class="rounded-xl px-4 py-3 font-medium text-gray-300 transition border-l-4 border-transparent" onmouseover="this.style.backgroundColor = 'rgba(249, 109, 0, 0.2)'; this.style.color = '#F96D00';" onmouseout="this.style.backgroundColor = ''; this.style.color = 'rgb(209, 213, 219)';">Messages</a>
                 <a href="{{ route('admin.contacts') }}" class="rounded-xl px-4 py-3 font-medium text-gray-300 transition border-l-4 border-transparent" onmouseover="this.style.backgroundColor = 'rgba(249, 109, 0, 0.2)'; this.style.color = '#F96D00';" onmouseout="this.style.backgroundColor = ''; this.style.color = 'rgb(209, 213, 219)';">Contacts</a>
                 <a href="{{ route('admin.users.index') }}" class="rounded-xl px-4 py-3 font-medium text-gray-300 transition border-l-4 border-transparent" onmouseover="this.style.backgroundColor = 'rgba(249, 109, 0, 0.2)'; this.style.color = '#F96D00';" onmouseout="this.style.backgroundColor = ''; this.style.color = 'rgb(209, 213, 219)';">Users</a>
                 <a href="{{ route('admin.gallery.index') }}" class="rounded-xl px-4 py-3 font-medium transition {{ request()->routeIs('admin.gallery*') ? 'text-white' : 'text-gray-300' }}" style="{{ request()->routeIs('admin.gallery*') ? 'background-color: rgba(249, 109, 0, 0.2); border-left: 4px solid #F96D00; color: #F96D00;' : 'border-left: 4px solid transparent;' }}" onmouseover="if(!this.style.borderLeftColor.includes('249')) { this.style.backgroundColor = 'rgba(249, 109, 0, 0.2)'; this.style.color = '#F96D00'; }" onmouseout="if(!this.classList.contains('active')) { this.style.backgroundColor = ''; this.style.color = 'rgb(209, 213, 219)'; }">Gallery</a>
@@ -102,10 +101,37 @@
                         <h1 class="text-2xl font-semibold text-gray-900">@yield('title', 'Admin Dashboard')</h1>
                         <p class="mt-1 text-sm text-gray-500">@yield('subtitle', 'Overview of tours, packages, and activity.')</p>
                     </div>
-                    <div class="flex flex-wrap items-center gap-3">
-                        <button class="inline-flex items-center gap-2 rounded-full border bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm transition" style="border-color: rgba(249, 109, 0, 0.3);" onmouseover="this.style.borderColor = '#F96D00'; this.style.backgroundColor = 'rgba(249, 109, 0, 0.05)';" onmouseout="this.style.borderColor = 'rgba(249, 109, 0, 0.3)'; this.style.backgroundColor = 'white';">Notifications <span class="rounded-full px-2 py-0.5 text-xs text-white" style="background-color: #F96D00;">4</span></button>
-                        <button class="inline-flex items-center gap-2 rounded-full border bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm transition" style="border-color: rgba(249, 109, 0, 0.3);" onmouseover="this.style.borderColor = '#F96D00'; this.style.backgroundColor = 'rgba(249, 109, 0, 0.05)';" onmouseout="this.style.borderColor = 'rgba(249, 109, 0, 0.3)'; this.style.backgroundColor = 'white';">Messages <span class="rounded-full px-2 py-0.5 text-xs text-white" style="background-color: #F96D00;">8</span></button>
-                    </div>
+<div class="flex flex-wrap items-center gap-3">
+    <!-- User Dropdown -->
+    <div class="relative inline-block text-left">
+        <button id="userMenuBtn" class="inline-flex items-center gap-2 rounded-full border bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm transition" style="border-color: rgba(249, 109, 0, 0.3);" onmouseover="this.style.borderColor = '#F96D00'; this.style.backgroundColor = 'rgba(249, 109, 0, 0.05)';" onmouseout="this.style.borderColor = 'rgba(249, 109, 0, 0.3)'; this.style.backgroundColor = 'white';">
+            {{ Auth::user()->name ?? 'User' }}
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div id="userDropdown" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden">
+            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="userMenuBtn">
+                <a href="{{ route('admin.profile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Profile</a>
+                <form method="POST" action="{{ route('logout') }}" class="m-0">
+                    @csrf
+                    <button type="submit" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Logout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Language Dropdown -->
+    <div class="relative inline-block text-left">
+        <button id="langMenuBtn" class="inline-flex items-center gap-2 rounded-full border bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm transition" style="border-color: rgba(249, 109, 0, 0.3);" onmouseover="this.style.borderColor = '#F96D00'; this.style.backgroundColor = 'rgba(249, 109, 0, 0.05)';" onmouseout="this.style.borderColor = 'rgba(249, 109, 0, 0.3)'; this.style.backgroundColor = 'white';">
+            Language
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div id="langDropdown" class="origin-top-right absolute right-0 mt-2 w-32 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden">
+            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="langMenuBtn">
+                <a href="{{ route('admin.setlocale', ['locale' => 'en']) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">English</a>
+                <a href="{{ route('admin.setlocale', ['locale' => 'sw']) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Swahili</a>
+            </div>
+        </div>
+    </div>
+</div>
                 </div>
             </header>
             <main class="px-4 py-6 md:px-6">

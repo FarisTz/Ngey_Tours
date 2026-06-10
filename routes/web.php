@@ -91,15 +91,25 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::get('/tours', [AdminController::class, 'tours'])->name('admin.tours');
     Route::get('/tours/create', [AdminController::class, 'createTour'])->name('admin.tours.create');
     Route::post('/tours', [AdminController::class, 'storeTour'])->name('admin.tours.store');
+Route::get('/tours/{tour}', [AdminController::class, 'showTour'])->name('admin.tours.show');
+Route::get('/tours/{tour}/edit', [AdminController::class, 'editTour'])->name('admin.tours.edit');
+Route::put('/tours/{tour}', [AdminController::class, 'updateTour'])->name('admin.tours.update');
+Route::delete('/tours/{tour}', [AdminController::class, 'destroyTour'])->name('admin.tours.destroy');
     Route::get('/contact-messages', [ContactController::class, 'index'])->name('admin.contact.messages');
     // Backwards-compatible route name expected by admin layout
     Route::get('/contacts', [ContactController::class, 'index'])->name('admin.contacts');
     Route::get('/packages', [AdminController::class, 'packages'])->name('admin.packages');
     Route::get('/packages/create', [AdminController::class, 'createPackage'])->name('admin.packages.create');
-    Route::post('/packages', [AdminController::class, 'storePackage'])->name('admin.packages.store');
+    Route::get('/packages/{package}', [AdminController::class, 'showPackage'])->name('admin.packages.show');
+    Route::get('/packages/{package}/edit', [AdminController::class, 'editPackage'])->name('admin.packages.edit');
+    Route::put('/packages/{package}', [AdminController::class, 'updatePackage'])->name('admin.packages.update');
+    Route::delete('/packages/{package}', [AdminController::class, 'destroyPackage'])->name('admin.packages.destroy');
     Route::get('/taxi-routes', [AdminController::class, 'taxiRoutes'])->name('admin.taxi.routes');
     Route::get('/taxi-routes/create', [AdminController::class, 'createTaxiRoute'])->name('admin.taxi.routes.create');
-    Route::post('/taxi-routes', [AdminController::class, 'storeTaxiRoute'])->name('admin.taxi.routes.store');
+Route::get('/taxi-routes/{route}/edit', [AdminController::class, 'editTaxiRoute'])->name('admin.taxi.routes.edit');
+    Route::put('/taxi-routes/{route}', [AdminController::class, 'updateTaxiRoute'])->name('admin.taxi.routes.update');
+    Route::delete('/taxi-routes/{route}', [AdminController::class, 'destroyTaxiRoute'])->name('admin.taxi.routes.destroy');
+
     Route::get('/taxi-vehicles', [AdminController::class, 'taxiVehicles'])->name('admin.taxi.vehicles');
     Route::get('/taxi-vehicles/create', [AdminController::class, 'createTaxiVehicle'])->name('admin.taxi.vehicles.create');
     Route::post('/taxi-vehicles', [AdminController::class, 'storeTaxiVehicle'])->name('admin.taxi.vehicles.store');
@@ -135,4 +145,13 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
 
     // Gallery Management Route
     Route::resource('gallery', \App\Http\Controllers\GalleryController::class)->names('admin.gallery');
+    // Admin Profile Routes
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('admin.profile');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('admin.profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('admin.profile.destroy');
+Route::get('/setlocale/{locale}', function ($locale) {
+    App::setLocale($locale);
+    session(['locale' => $locale]);
+    return redirect()->back();
+})->name('admin.setlocale');
 });
