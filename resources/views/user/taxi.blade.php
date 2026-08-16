@@ -118,9 +118,10 @@
               </div>
             </div>
 
-            <div class="mt-3 d-flex justify-content-between">
+            <div class="mt-3 d-flex gap-2">
               <button type="submit" class="btn btn-primary">Get Quote</button>
               <a href="https://wa.me/255718940807" target="_blank" class="btn btn-outline-secondary">Book Taxi</a>
+              <a href="https://payments.pesapal.com/ngeytourandsafari" target="_blank" class="btn btn-success">Continue to Payment</a>
             </div>
           </form>
         </div>

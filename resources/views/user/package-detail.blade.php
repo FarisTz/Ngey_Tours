@@ -100,8 +100,9 @@
                 <div class="form-group">
                 <textarea name="special_requests" id="" cols="30" rows="7" class="form-control" placeholder="Special Requests">{{ old('special_requests') }}</textarea>
                 </div>
-                <div class="form-group">
+                <div class="form-group d-flex gap-2">
                 <input type="submit" value="Request Quote" class="btn btn-primary py-3 px-5">
+                <a href="https://payments.pesapal.com/ngeytourandsafari" target="_blank" class="btn btn-success py-3 px-5">Continue to Payment</a>
                 </div>
             </form>
 
